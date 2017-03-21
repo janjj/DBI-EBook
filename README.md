@@ -12,3 +12,4 @@ Zu finden unter content/name.tex.
 + \label{Text} --> vergibt ein internes Label
 + \ref{label} --> referenziert ein Label
 
+... sonst hilft Google auch sehr gut.
