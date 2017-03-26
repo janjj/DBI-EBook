@@ -11,5 +11,10 @@ Zu finden unter content/name.tex.
 + \cite{Bibtex-Label} --> zitiert einen Bibtex Eintrag (s. bibliographie.bib)
 + \label{Text} --> vergibt ein internes Label
 + \ref{label} --> referenziert ein Label
-
++ http://www.tablesgenerator.com/ --> Tabellen generieren
++ \begin{figure}[h] --> h = genau hier einfügen, sonst sucht Latex den besten Platz   
+  \includegraphic{pfad}   
+  \end{figure}   
+  --> Grafiken einfügen   
+  
 ... sonst hilft Google auch sehr gut.
