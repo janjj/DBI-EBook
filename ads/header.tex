@@ -139,33 +139,33 @@
 % Schriftart in Captions etwas kleiner
 \addtokomafont{caption}{\small}
 
-% Literaturverweise (sowohl deutsch als auch englisch)
-\iflang{de}{%
-\usepackage[
-	backend=bibtex,		% empfohlen. Falls biber Probleme macht: bibtex
-	bibwarn=true,
-	bibencoding=utf8,	% wenn .bib in utf8, sonst ascii
-	sortlocale=de_DE,
-	style=\zitierstil,
-	backref=true
-]{biblatex}
-}
-\iflang{en}{%
-\usepackage[
-	backend=bibtex,		% empfohlen. Falls biber Probleme macht: bibtex
-	bibwarn=true,
-	bibencoding=utf8,	% wenn .bib in utf8, sonst ascii
-	sortlocale=en_US,
-	style=\zitierstil,
-]{biblatex}
-}
+% % Literaturverweise (sowohl deutsch als auch englisch)
+% \iflang{de}{%
+% \usepackage[
+% 	backend=bibtex,		% empfohlen. Falls biber Probleme macht: bibtex
+% 	bibwarn=true,
+% 	bibencoding=utf8,	% wenn .bib in utf8, sonst ascii
+% 	sortlocale=de_DE,
+% 	style=\zitierstil,
+% 	backref=true
+% ]{biblatex}
+% }
+% \iflang{en}{%
+% \usepackage[
+% 	backend=bibtex,		% empfohlen. Falls biber Probleme macht: bibtex
+% 	bibwarn=true,
+% 	bibencoding=utf8,	% wenn .bib in utf8, sonst ascii
+% 	sortlocale=en_US,
+% 	style=\zitierstil,
+% ]{biblatex}
+% }
 
-% Mehr Platz zwischen einzelnen Items im Literaturverzeichnis bei Verwendung von authoryear
-\setlength{\bibitemsep}{\baselineskip}
-\DeclareNameAlias{sortname}{last-first}
-
-\ladeliteratur{}
-
+% % Mehr Platz zwischen einzelnen Items im Literaturverzeichnis bei Verwendung von authoryear
+% \setlength{\bibitemsep}{\baselineskip}
+% \DeclareNameAlias{sortname}{last-first}
+% 
+% \ladeliteratur{}
+\usepackage{apacite}
 % Glossar
 \usepackage[nonumberlist,toc]{glossaries}
 

@@ -1,0 +1,9 @@
+\chapter{Architecture}
+\section{Core Processes}
+The MongoDB server package comes up with three main processes:
+\begin{itemize}
+  \item mongod
+  \item mongo
+  \item mongos
+\end{itemize}
+\textit{mongod} is the core database server. Once started, the \textit{mongod} listens by default on port 27017 for requests. It also manages the data format and performs all background operations. For administration the \textit{mondod} provides an HTTP interface witch can be reached at the localhost on port 28017 (1000 higher than the default port). \\
