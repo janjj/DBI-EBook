@@ -13,8 +13,16 @@ Zu finden unter content/name.tex.
 + \ref{label} --> referenziert ein Label
 + http://www.tablesgenerator.com/ --> Tabellen generieren
 + \begin{figure}[h] --> h = genau hier einfügen, sonst sucht Latex den besten Platz   
-  \includegraphic{pfad}   
+  \includegraphics{pfad}   
   \end{figure}   
-  --> Grafiken einfügen   
+  --> Grafiken einfügen    
++ \textit{text} --> kursiv
++ \textbf{text} --> fett
++ \textbackslash --> backslash im Fließtext
++ \glqq text \grqq --> Anführungszeichen
++ \begin{itemize}   
+  \item     
+  \end{itemize}    
+  --> Aufzählung    
   
 ... sonst hilft Google auch sehr gut.
