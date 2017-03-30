@@ -1,11 +1,25 @@
 \select@language {ngerman}
-\contentsline {chapter}{\numberline {1}Architecture}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Core Processes}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Replication}{2}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Master/Slave Replication}{2}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Replica sets}{2}{subsection.1.2.2}
-\contentsline {subsubsection}{\nonumberline Communication}{3}{section*.2}
-\contentsline {subsubsection}{\nonumberline Consitency}{3}{section*.3}
-\contentsline {section}{\numberline {1.3}Sharding}{4}{section.1.3}
-\contentsline {section}{\numberline {1.4}Summary}{4}{section.1.4}
-\contentsline {chapter}{Literaturverzeichnis}{i}{chapter*.5}
+\contentsline {chapter}{\numberline {1}MongoDB}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}What is MongoDB ?}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Use Cases: What is MongoDB for?}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}Datamodel}{3}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Databases and Collections}{3}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Documents}{4}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}Embedded Documents and Referencing}{4}{subsection.1.3.3}
+\contentsline {subsection}{\numberline {1.3.4}Validation}{5}{subsection.1.3.4}
+\contentsline {section}{\numberline {1.4}Queries and CRUD operations}{6}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Create (Insert)}{6}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}Read (Find)}{6}{subsection.1.4.2}
+\contentsline {subsection}{\numberline {1.4.3}Update}{7}{subsection.1.4.3}
+\contentsline {subsection}{\numberline {1.4.4}Delete}{7}{subsection.1.4.4}
+\contentsline {section}{\numberline {1.5}Architecture}{8}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Core Processes}{8}{subsection.1.5.1}
+\contentsline {subsection}{\numberline {1.5.2}Replication}{8}{subsection.1.5.2}
+\contentsline {subsubsection}{\nonumberline Master/Slave Replication}{9}{section*.3}
+\contentsline {subsubsection}{\nonumberline Replica sets}{9}{section*.4}
+\contentsline {subsubsection}{\nonumberline Communication}{9}{section*.5}
+\contentsline {subsubsection}{\nonumberline Consitency}{10}{section*.6}
+\contentsline {subsection}{\numberline {1.5.3}Sharding}{11}{subsection.1.5.3}
+\contentsline {subsection}{\numberline {1.5.4}Summary}{11}{subsection.1.5.4}
+\contentsline {section}{\numberline {1.6}MongoDB and Big Data}{12}{section.1.6}
+\contentsline {chapter}{Literaturverzeichnis}{i}{chapter*.9}
