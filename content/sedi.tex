@@ -2,6 +2,10 @@ This chapter guides you through the features of MongoDB. Whereby we go through w
 
 \section{What is MongoDB ?}
 MongoDB is a part of NoSQL family and belongs to the document-oriented databases. Therefore, it doesn’t have the concepts of tables, rows and columns. Instead, MongoDB is built on an architecture of collections and documents. Documents contain sets of key- value pairs like JSON and are the basic unit of data in MongoDB. A collection includes a set of documents and offers the same functionality as relational database tables\cite{Banker2016}
+\begin{figure}[H]
+\includegraphics[width=\linewidth,keepaspectratio]{images/documentscollections.png}
+\caption{Documents and collections}
+\end{figure}
 \\
 MongoDB stores data as Binary JSON documents also known as BSON. The documents can have different schemas, which means that the schema can change dynamically as the application evolves. Automatic sharding enables data in a collection to be distributed across multiple systems for horizontal scalability as data volumes increase\cite{Edward2015}. Additional, MongoDB doesn’t only support Key-Value operations. It allows complex queries, aggregations and secondary indexes that unlock the value in structured, semi-structured and unstructured data. One of MongoDB’s major features is the support for many types of queries like text search, range queries, geospatial queries over to MapReduce queries\cite{MongoDBInc.2013a}.
 \\
