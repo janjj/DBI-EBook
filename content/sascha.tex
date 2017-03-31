@@ -35,7 +35,7 @@ The following performance test were performed, using NodeJS. For MongoDB connect
 \caption{Deletion performance}
 \label{arch-example4}
 \end{figure}
-\\
+
 The numbers show an interesting result. In the insert test MongoDB performs worse than MariaDB just slightly up to the point of 1000 inserts. After that point MariaDB falls behind. With increasing number of inserts the performance leap of MongoDB increases a lot. A reason for this could be some kind of overhead for inserts on MongoDB, further investigation is needed to evaluate the results and the cause. A similar behavior can be seen on deletion test.
 \\\\
 The following performance results are provided by the paper \cite{Li_A_2013}
@@ -54,7 +54,7 @@ The following performance results are provided by the paper \cite{Li_A_2013}
 \caption{time for delete operation in milliseconds}
 \label{arch-exampl1}
 \end{figure}
-\\
+
 Interestingly the benchmarks from the paper show similar results on write performance when comparing the SQL implementation and MongoDB. After 100 writes MongoDB performs better. When comparing to other NoSQL databases, MongoDB is always in the upper half of the field. So it can be said, that this database should be suited well for demanding applications and performance shouldn't be a major problem. 
 \\\\
 These statements only apply for single instance usage. Since MongoDB uses a single master architecture for multiple instances, throughput will be less than database systems that trade consistency for performance. Using sharded servers can increase performance for horizontal scaling. With this addition, MonngoDB is also very usable for scientific applications with high amounts of I/O and data \cite{Dede_Performance_2013}.
