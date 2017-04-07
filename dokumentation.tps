@@ -12,7 +12,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1242
-NormalPos.bottom=359
+NormalPos.bottom=713
 Class=LaTeXView
 Document=dokumentation.tex
 
@@ -30,7 +30,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1242
-NormalPos.bottom=359
+NormalPos.bottom=713
 Class=LaTeXView
 Document=content\sedi.tex
 
@@ -48,7 +48,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1242
-NormalPos.bottom=359
+NormalPos.bottom=713
 Class=LaTeXView
 Document=content\Vorlage.tex
 
@@ -66,12 +66,12 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1242
-NormalPos.bottom=359
+NormalPos.bottom=713
 Class=LaTeXView
 Document=content\alex.tex
 
 [Frame3_View0,0]
-TopLine=93
+TopLine=75
 Cursor=9071
 
 [Frame4]
@@ -84,13 +84,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1242
-NormalPos.bottom=359
+NormalPos.bottom=713
 Class=BibTeXView
 Document=bibliographie.bib
 
 [Frame4_View0,0]
-TopLine=0
-Cursor=225
+TopLine=192
+Cursor=7201
 
 [Frame5]
 Flags=0
@@ -102,12 +102,12 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1242
-NormalPos.bottom=359
+NormalPos.bottom=713
 Class=LaTeXView
 Document=content\sedi-bigdata.tex
 
 [Frame5_View0,0]
-TopLine=6
+TopLine=0
 Cursor=1377
 
 [Frame6]
@@ -120,13 +120,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1242
-NormalPos.bottom=359
+NormalPos.bottom=713
 Class=LaTeXView
 Document=content\sascha.tex
 
 [Frame6_View0,0]
-TopLine=91
-Cursor=7187
+TopLine=73
+Cursor=6661
 
 [Frame7]
 Flags=0
@@ -138,15 +138,51 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=1242
-NormalPos.bottom=359
+NormalPos.bottom=713
 Class=LaTeXView
 Document=content\christoph.tex
 
 [Frame7_View0,0]
-TopLine=152
+TopLine=134
 Cursor=8668
 
+[Frame8]
+Flags=0
+ShowCmd=1
+MinPos.x=-1
+MinPos.y=-1
+MaxPos.x=-1
+MaxPos.y=-1
+NormalPos.left=4
+NormalPos.top=26
+NormalPos.right=1242
+NormalPos.bottom=713
+Class=LaTeXView
+Document=lang\sprache.tex
+
+[Frame8_View0,0]
+TopLine=0
+Cursor=0
+
+[Frame9]
+Flags=0
+ShowCmd=1
+MinPos.x=-1
+MinPos.y=-1
+MaxPos.x=-1
+MaxPos.y=-1
+NormalPos.left=4
+NormalPos.top=26
+NormalPos.right=1242
+NormalPos.bottom=713
+Class=LaTeXView
+Document=lang\strings.tex
+
+[Frame9_View0,0]
+TopLine=0
+Cursor=0
+
 [SessionInfo]
-FrameCount=8
-ActiveFrame=0
+FrameCount=10
+ActiveFrame=6
 
