@@ -89,3 +89,73 @@ Selctions are wirteable.
 Streams are not writable.
 Streams are lazy, they give you the next dataset if the current has been processed.
 With Streams you can read tremendous long lists of Data, without holding everything in Memory.
+
+
+\section{Changefeeds}
+
+Changefeeds are the main part of RethinkDB's real-time functionality.
+Almost all queries can be used as a changefeed.
+With a Changefeed you recive any changes on your query.
+
+\begin{2stlisting}[frame=single, caption=example usage, label=refdoc]
+r.table('project').changes().run(conn, (err, cursor) => {
+	cursor.each((err, row) => {
+		if(err) throw err;
+		processRow(row);
+	})
+});
+\end{2stlisting}
+
+The \code{changes()} method returns a cursor.
+The \code{each()} method of that cursor object iterates over each Change.
+If the underlaying data of the query changes the callback of each will be called.
+This iteration will be infinit.
+For example a new project will be added \code{{id:3, name: "awesome Project", priority:1}} into the project table.
+The \code{each()} callback will be called with the changes of the table.
+
+\begin{3stlisting}[frame=single, caption=example usage, label=refdoc]
+{
+	old_val: null,
+	new_val: {id:3, name: 'awesome Project', priority:1}
+}
+\end{3stlisting}
+
+If the callback for \code{each} returns false, the cursor will stop iterating.
+
+\textbf{single document changefeeds}
+
+A single docuemtn changefeed returns only changes to the document.
+
+\begin{4stlisting}[frame=single, caption=example usage, label=refdoc]
+r.table('project').get(3).changes().run(conn, callback);
+\end{4stlisting}
+
+This would listen for changes of the project with id 3.
+
+\textbf{Filtering Changefeeds}
+
+The method \code{changes()} integrates with the ReQL language.
+\code{changes()} can be used with mostly any outher command.
+
+The chaning of ReQL methods can be as complex as you wish.
+
+\begin{5stlisting}[frame=single, caption=example usage, label=refdoc]
+r.table('project').changes().filter(
+    r.row('new_val')('priority').lt(r.row('old_val')('priority'))
+)('new_val').run(conn, callback)
+\end{5stlisting}
+
+This will be notified on every change, there the priority is lower as the previous.
+
+Chaning with changefeeds has some limitations.
+Please read the current documentation for these limitations.
+
+\textbf{handling latency}
+
+With some latency on the client side, it is possible that there will be mutliple writes into a table, before the clinet gets all changefeed events.
+By defualt the subscriber of the changefeed will only get one change object.
+If this is not the desired procedure the option \code{squash: false} should be used on the \code{changes()} method.
+With this option the change object will be send for every change.
+
+Changefeeds do not have a delivery guarantee.
+
