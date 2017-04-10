@@ -1,0 +1,71 @@
+\input{ads/header}
+
+\makeglossaries
+\input{ads/glossary}
+
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{mdframed}
+
+%CODEDESIGN:
+%\definecolor{codeBackground}{rgb}{0.9, 0.9, 0.8}
+%\lstnewenvironment{mylisting}[1]{
+%	\lstset{
+%		basicstyle=\ttfamily\small,
+%		breaklines=true,
+%		moredelim=**[is][\bfseries]{|}{|},% bold everything in between ||
+%		moredelim=**[is][\itshape]{*}{*}  % italic everything in between **
+%	}%
+%	\mdframed[backgroundcolor=codeBackground,shadow=true,shadowsize=2pt,shadowcolor=black!30]%
+%}{%
+%\bigskip
+%\ignorespaces
+%}
+
+%%%%
+
+\begin{document}
+
+	% Deckblatt
+	\begin{spacing}{1}
+		\input{ads/deckblatt}
+	\end{spacing}
+	\newpage
+		\input{content/thanks}
+	\newpage
+	\pagestyle{plain}	
+
+	% Inhaltsverzeichnis
+	\begin{spacing}{1.1}
+		\begingroup
+			\setcounter{tocdepth}{2}
+			\tableofcontents
+			\clearpage
+		\endgroup
+	\end{spacing}
+	\newpage
+
+	\pagenumbering{arabic}
+	
+	\pagestyle{headings}
+
+	% Struktur
+	\input{content/Struktur.tex}
+	
+	\clearpage
+		
+	\pagenumbering{roman}
+	
+	% Literaturverzeichnis
+	\cleardoublepage
+  \bibliographystyle{apacite}
+  \bibliography{bibliographie}
+	\newpage\null\thispagestyle{plain}\newpage
+	
+	% Glossar
+	\printglossary[style=altlist,title=\langglossar]
+	%\input{ads/glossary}
+	
+
+\end{document}

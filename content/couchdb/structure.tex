@@ -1,16 +1,16 @@
 \section{Document Structure}
 
-Documents are CouchDB’s central data structure \parencite{Tutorialspoint, CouchDB.Guide}. 
+Documents are CouchDB’s central data structure \cite{Tutorialspoint, CouchDB.Guide}. 
 Based on the fact that the CouchDB stores the content of the database not in tables another way is required. The data is stored in a specific form of documents.
 %The creation of these documents can be done either with cURL utility provided by CouchDB or with Futon\cite{Tutorialspoint}.
 
 
 %%%
 \subsection{Document Characteristics}
-A CouchDB server hosts named databases, which store documents \parencite{apache.docs.2.0}. As explained above, the documents are the place where the database content is stored. To access the data a way to retrieve the information from the documents is required. That is the reason why each document in CouchDB has a unique identifier ID \parencite{Brown.2012, Tutorialspoint}. The user can choose a specific ID that should be in the form of a string and based on the fact that we want to avoid collisions with twice used ID generally, the so-called Universally Unique Identifier (UUID) is used. In this way, the creation of duplicate IDs is prevented \parencite{Tutorialspoint}. \\
-In addition CouchDB provides a RESTful HTTP API for database documents that can use these IDs to read, change and update documents \parencite{apache.docs.2.0}.
-In the official apache docs, documents are described as the ``primary unit of data in CouchDB''  and they state out they can ``consist of any number of fields and attachments'' \parencite{apache.docs.2.0}. 
-Furthermore do they include metadata values of varying types \parencite{apache.docs.2.0}. For example, text, number, boolean or lists \parencite{apache.docs.2.0}.
+A CouchDB server hosts named databases, which store documents \cite{apache.docs.2.0}. As explained above, the documents are the place where the database content is stored. To access the data a way to retrieve the information from the documents is required. That is the reason why each document in CouchDB has a unique identifier ID \cite{Brown.2012, Tutorialspoint}. The user can choose a specific ID that should be in the form of a string and based on the fact that we want to avoid collisions with twice used ID generally, the so-called Universally Unique Identifier (UUID) is used. In this way, the creation of duplicate IDs is prevented \cite{Tutorialspoint}. \\
+In addition CouchDB provides a RESTful HTTP API for database documents that can use these IDs to read, change and update documents \cite{apache.docs.2.0}.
+In the official apache docs, documents are described as the ``primary unit of data in CouchDB''  and they state out they can ``consist of any number of fields and attachments'' \cite{apache.docs.2.0}. 
+Furthermore do they include metadata values of varying types \cite{apache.docs.2.0}. For example, text, number, boolean or lists \cite{apache.docs.2.0}.
 \newline
 
 
@@ -35,8 +35,8 @@ Furthermore do they include metadata values of varying types \parencite{apache.d
 
 
 \subsection{Design Documents}
-Design documents are a special type of CouchDB document and beside the core document storage it is probably the most important component of the CouchDB database \parencite{CouchDB.Guide,Brown.2012}. These documents contain the application code or in other words, they contain the database logic about the document \parencite{CouchDB.Guide,Brown.2012}. \\
-``Think of the design document as the glue that turns each of your documents into the format or structure that you need for your application.'' \parencite{Brown.2012}
+Design documents are a special type of CouchDB document and beside the core document storage it is probably the most important component of the CouchDB database \cite{CouchDB.Guide,Brown.2012}. These documents contain the application code or in other words, they contain the database logic about the document \cite{CouchDB.Guide,Brown.2012}. \\
+``Think of the design document as the glue that turns each of your documents into the format or structure that you need for your application.'' \cite{Brown.2012}
 This quote shows the importance of design documents.
 %The key to all of these different types of information, %and many others, is the design document. Aside from the %core document storage, the design document is probably %the most important component of your CouchDB database. %Design documents contain all of the database logic about %the document you are storing. Think of the design %document as the glue that turns each of your documents %into the format or structure that you need for your %application.
 %\cite{Brown.2012}
@@ -51,27 +51,29 @@ The following paragraphs explain the purpose of:
     \item Filters
 \end{itemize}
 \textbf{Views} \\
-Functions that create lists of documents data are called views. Therefore, they take and process the information inside documents to create lists, that are even search-able. The process to create views is incredibly simple and very powerful because in fact, the user does not need to know the document ID \parencite{Brown.2012}. In other words, views are an easy way to organise and group documents in a way that help to understand the meaning of the documents content \parencite{CouchDB.Guide}. The purpose of the view is also described as the collection of documents \parencite{Brown.2012}. \\
+Functions that create lists of documents data are called views. Therefore, they take and process the information inside documents to create lists, that are even search-able. The process to create views is incredibly simple and very powerful because in fact, the user does not need to know the document ID \cite{Brown.2012}. In other words, views are an easy way to organise and group documents in a way that help to understand the meaning of the documents content \cite{CouchDB.Guide}. The purpose of the view is also described as the collection of documents \cite{Brown.2012}. \\
 \newline
 %%%%
 %Views are the primary tool used for querying and %reporting on CouchDB databases.\cite{apache.docs.2.0}
 %%%%
 \textbf{Shows} \\
-To convert a document to another format, a show function is needed. Usually, the most useful format is HTML, although the user can select any format, including JSON or XML if these formats suit their application better. One reason to use a format changing function is that in that way it is possible to simplify the document's JSON content to a reduced format \parencite{Brown.2012}.\\
+To convert a document to another format, a show function is needed. Usually, the most useful format is HTML, although the user can select any format, including JSON or XML if these formats suit their application better. One reason to use a format changing function is that in that way it is possible to simplify the document's JSON content to a reduced format \cite{Brown.2012}.\\
 \newline
 %Show functions are used to represent documents in %various formats, commonly as HTML pages with nice %formatting. They can also be used to run server-side %functions without requiring a pre-existing %document.\cite{apache.docs.2.0}
 \textbf{Lists} \\
-A list is to a view as a show is to a single document. The list function is used to format the view as an HTML table, or a page of information or as XML of your document collection. In this way, a list transforms the entire content of one view into another format \parencite{Brown.2012}. CouchDB list functions allow you to create the output of views in any format \parencite{CouchDB.Guide}.
-Here’s an example \parencite{CouchDB.Guide} design document that contains one list function:
-\begin{mylisting}{Example List Function \parencite{CouchDB.Guide}}
+A list is to a view as a show is to a single document. The list function is used to format the view as an HTML table, or a page of information or as XML of your document collection. In this way, a list transforms the entire content of one view into another format \cite{Brown.2012}. CouchDB list functions allow you to create the output of views in any format \cite{CouchDB.Guide}.
+Here’s an example \cite{CouchDB.Guide} design document that contains one list function:
+
+\begin{lstlisting}[frame=single, caption=Example List Function \cite{CouchDB.Guide}, label=cdblistFunc]
 {
-  "_id" : "_design/foo",
-  "_rev" : "1-67at7bg",
-  "lists" : {
-    "zoom" : "function() { return 'zoom!' }",
-  }
+	"_id" : "_design/foo",
+	"_rev" : "1-67at7bg",
+	"lists" : {
+		"zoom" : "function() { return 'zoom!' }",
+	}
 }
-\end{mylisting} \\
+\end{lstlisting}
+
 %\begin{mdframed}[hidealllines=true,backgroundcolor=blue!20]
 %\begin{lstlisting}[basicstyle=\ttfamily\small,breaklines=true,caption=blabla, label=amb]
 %{
@@ -87,16 +89,18 @@ Here’s an example \parencite{CouchDB.Guide} design document that contains one 
 %%%
 %While Show Functions are used to customize document %presentation, List Functions are used for the same %purpose, but on View Functions %results.\cite{apache.docs.2.0}
 %%%%
-\textbf{Document Validation} \\
-To maintain consistency in the CouchDB we need so-called validation functions. ``Often in document-based software, the client application edits and manipulates the data, saving it back \parencite{CouchDB.Guide}.'' Right after the saving of a new document into CouchDB the validation function is called. This function can either check or even reformat the incoming document to meet your requirements and standards for different documents \parencite{Brown.2012}. With Validation functions, the user does not have to worry about data causing errors in the DB \parencite{CouchDB.Guide}. \\
+
+\textbf{Document Validation}
+
+To maintain consistency in the CouchDB we need so-called validation functions. ``Often in document-based software, the client application edits and manipulates the data, saving it back \cite{CouchDB.Guide}.'' Right after the saving of a new document into CouchDB the validation function is called. This function can either check or even reformat the incoming document to meet your requirements and standards for different documents \cite{Brown.2012}. With Validation functions, the user does not have to worry about data causing errors in the DB \cite{CouchDB.Guide}. \\
 \newline
 \textbf{Update Handlers}\\
-If the user wants to execute an action on a specific document after updating it he or she have to use update handlers. Unlike document validation are these handlers explicitly called. As an example can these handlers be used to increment values in a document or add and update timestamps \parencite{Brown.2012}. \\ 
+If the user wants to execute an action on a specific document after updating it he or she have to use update handlers. Unlike document validation are these handlers explicitly called. As an example can these handlers be used to increment values in a document or add and update timestamps \cite{Brown.2012}. \\ 
 %Unlike document validation, update handlers are explicitly called, but they can be used to make changes to a document within the server without having to retrieve the document, change it, and save %it back (as would be required for a client process). 
 \newline
 \textbf{Filters}\\
 The example of storing information about a CD and DVD collection explains the usage of filters very well.
-If the user stores information about a CD and DVD collection in a single database, he or she may wants to exchange only the CD records with another database \parencite{Brown.2012}. In some use cases, it might be useful to filter the content of the database. These use cases could be, for example, exchanging information between CouchDB databases or using replication \parencite{Brown.2012}. If filter functions are called, it probes the list of supplied documents from the replication and then either returns the document or null \parencite{Brown.2012}. \\
+If the user stores information about a CD and DVD collection in a single database, he or she may wants to exchange only the CD records with another database \cite{Brown.2012}. In some use cases, it might be useful to filter the content of the database. These use cases could be, for example, exchanging information between CouchDB databases or using replication \cite{Brown.2012}. If filter functions are called, it probes the list of supplied documents from the replication and then either returns the document or null \cite{Brown.2012}. \\
 %In addition, it is notable that any database can have zero or more design documents\cite{Brown.2012}.
 
 %%%
@@ -104,23 +108,23 @@ If the user stores information about a CD and DVD collection in a single databas
 %%%
 
 \subsection{JSON Document Format}
-CouchDB uses JavaScript Object Notation (JSON) for data storage \parencite{Anderson.2010.Buch}.
+CouchDB uses JavaScript Object Notation (JSON) for data storage \cite{Anderson.2010.Buch}.
 %%Appendixquelle
-The author Tim Juravich describe JSON as the ``strange markup of the document'' \parencite{Juravich2012}. ``JSON is a lightweight data-interchange format based on JavaScript syntax and is extremely portable \parencite{Juravich2012}.''
+The author Tim Juravich describe JSON as the ``strange markup of the document'' \cite{Juravich2012}. ``JSON is a lightweight data-interchange format based on JavaScript syntax and is extremely portable \cite{Juravich2012}.''
 %The basic format of the design document is a JSON document with a field for each of the major content types (view, list, shows)\cite{Brown.2012}.
 %Depending on the type, the definition then contains one or more further definitions\cite{Brown.2012}.
 \newpage
-\begin{mylisting}{Example JSON Document based on \parencite{Brown.2012}}
+\begin{mylisting}{Example JSON Document based on \cite{Brown.2012}}
 {
     "language": "javascript",
     "views": {
         "all": {
             "map": "function(doc) { emit(doc.title, doc) }",
         },
-        "by_title": {
+        "by\_title": {
             "map": "function(doc) { if (doc.title != null) emit(doc.title, doc) }",
         },
-        "by_keyword": {
+        "by\_keyword": {
             "map": "function(doc) { for(i=0;i<doc.keywords.lenghth();i++) { emit(doc.keywords[i], doc); } }",
         },
     },
@@ -152,7 +156,7 @@ The author Tim Juravich describe JSON as the ``strange markup of the document'' 
 %\end{lstlisting}
 %\end{mdframed} \\
 %%%%%
-The example in figure 1.2 provides a simple design document that defines three views and one single show \parencite{Brown.2012}. The syntax of JSON should be pretty self-explanatory. Curly braces wrap objects. Every Object is key/value lists and the keys are strings, which are wrapped in double quotes. A value can be a string, an integer, an object, or an array \parencite{CouchDB.Guide}. Keys and values are separated by a colon and multiple keys and values by comma \parencite{CouchDB.Guide}. \\
+The example in figure 1.2 provides a simple design document that defines three views and one single show \cite{Brown.2012}. The syntax of JSON should be pretty self-explanatory. Curly braces wrap objects. Every Object is key/value lists and the keys are strings, which are wrapped in double quotes. A value can be a string, an integer, an object, or an array \cite{CouchDB.Guide}. Keys and values are separated by a colon and multiple keys and values by comma \cite{CouchDB.Guide}. \\
 %One of the best bits about JSON is that it’s easy to read and write by hand, much more so than something like XML\cite{Anderson.2010}. We can parse it naturally with %JavaScript because it shares part of the same syntax\cite{Anderson.2010}. This really comes in handy when we’re building dynamic web applications and we want to fetch %some data from the server\cite{Anderson.2010}.
 %Here’s a sample JSON document:
 %\begin{mdframed}[hidealllines=true,backgroundcolor=blue!20]
@@ -170,7 +174,7 @@ The example in figure 1.2 provides a simple design document that defines three v
 %}
 %\end{lstlisting}
 %\end{mdframed} \\
-In other words, the general structure is based around key/value pairs and lists of things \parencite{Anderson.2010.Buch}.
+In other words, the general structure is based around key/value pairs and lists of things \cite{Anderson.2010.Buch}.
 
 %\subsection{Modeling Documents}
 
