@@ -1,6 +1,6 @@
 %!TEX root = ../dokumentation.tex
 
-\subsection{Advantages and Disadvantages}
+\section{Advantages and Disadvantages}
 When evaluating the advantages and disadvantages of HBase it can be revealing to have a closer look at its features. According to \cite{hbase.achari.2015} HBase's characteristics can be named with the following key words: \textbf{sparse}, \textbf{distributed}, \textbf{multidimensional}, \textbf{map} and \textbf{sorted}. 
 
 The word sparse seems to be a quite negative description for a database, at least in the german translation (dt.: dürftig). It sounds like HBase does not provide all of the important feautures a database should have. But actually the word sparse does not refer to the database itself but to the data stored within it. As described earlier the table schema can be absolutely flexible. The columns don't need to be the same in every row, two rows don't even need to be similar. For that reason there is no need to fill missing values with NULL to keep the schema consistent like it would be nessecary in relational databases. This saves storage space. Additionaly this structure has the advantage that columns can be added or removed at every moment of the database's lifetime. \cite{hbase.achari.2015}
