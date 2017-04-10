@@ -1,3 +1,16 @@
+%%**************************************************************
+%% Vorlage fuer Bachelorarbeiten (o.ä.) der DHBW
+%%
+%% Autor: Tobias Dreher, Yves Fischer
+%% Datum: 06.07.2011
+%%
+%% Autor: Michael Gruben
+%% Datum: 15.05.2013
+%%
+%% Autor: Markus Barthel
+%% Datum: 22.08.2014
+%%**************************************************************
+
 \input{ads/header}
 
 \makeglossaries
@@ -6,17 +19,12 @@
 \usepackage{enumitem}
 \usepackage[table,xcdraw]{xcolor}
 
-\usepackage{listings}
-\usepackage{graphicx}
-
 \begin{document}
 
 	% Deckblatt
 	\begin{spacing}{1}
 		\input{ads/deckblatt}
 	\end{spacing}
-	\newpage
-		\input{content/thanks}
 	\newpage
 	\pagestyle{plain}	
 
@@ -32,10 +40,10 @@
 
 	\pagenumbering{arabic}
 	
-	\pagestyle{headings}
+	\pagestyle{headings}		% Kolumnentitel im Kopf, Seitenzahlen im Fuß
 
-	% Struktur
-	\input{content/Struktur.tex}
+	% Vorlage
+	\input{content/Vorlage.tex}
 	
 	\clearpage
 		
@@ -43,10 +51,17 @@
 	
 	% Literaturverzeichnis
 	\cleardoublepage
+% 	\printbibheading
+% 	\printbibliography[nottype=online,heading=subbibliography,title={Publikationen}]
+% 	\printbibliography[type=online,notkeyword=Gesetz,notkeyword=Standard,heading=subbibliography,title={Online Quellen}]
+% 	\printbibliography[type=online,keyword=Gesetz,heading=subbibliography,title={Rechtsquellenverzeichnis}]
+% 	\printbibliography[type=online,keyword=Standard,heading=subbibliography,title={Standards \& Normen}]
+% 
+% 	\renewcommand\bibname{Literaturverzeichnis}
+% 	\printbibliography
   \bibliographystyle{apacite}
   \bibliography{bibliographie}
-	\newpage\null\thispagestyle{plain}\newpage
-	
+		
 	% Glossar
 	\printglossary[style=altlist,title=\langglossar]
 	%\input{ads/glossary}
