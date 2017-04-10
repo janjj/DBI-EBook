@@ -1,0 +1,83 @@
+%!TEX root = ../dokumentation.tex
+
+\chapter{Introduction}
+\section{Column-oriented DBMS}
+
+Column oriented databases store data of a table in columns, instead of storing them in rows. 
+This describes the fact how data is saved on the hard disk.
+
+In normal row-oriented DBMS the data is grouped into a bunch of data. 
+Each of that bunch is saved in a separate file, more concrete it contains a few rows with all columns of this table. 
+\cite{hbase.stavros.harizopoulos.2009}
+
+This means that a read access needs to read a lot of unwanted data.
+For example, if it is necessary to access just first names, all data of every row must be read and then discarded, until the name is found. 
+Aferwards it is necessary to read another first name and so on. 
+\cite{hbase.stavros.harizopoulos.2009}
+
+Column-oriented DBMS group store each column in a separate file. 
+So for the same example, it is necessary to access two first names: it only needs to open the 'first names'-file and then search these two names.
+Only other names have to be discarded, instead of the complete row plus the other names.
+So no extra time is wasted by just reading unwanted data.
+\cite{hbase.daniel.abadi.2010}
+
+The storage of the files is the main difference between column- and row-oriented databases.
+Column-oriented DBMS also use traditional languages like SQL to interact with the data.
+They also use the same underlying organization like ETL (extract, transform, load - used by Data Warehouses) or other tools for visualization.
+\cite{hbase.amazon.2017}
+The most expensive operation in a normal database is seeking. 
+And column-oriented DBMS improve it.
+
+
+\newpage
+
+\section{Example}
+The following two tables show the difference between the column and row oriented structure.
+
+Every row in the following list is a separate file.
+
+\paragraph{Row-oriented databases:}
+One row contains an index, the age, first name, last name and a number.
+The data set is stored in this order on the file. 
+To access the 3rd name it is necessary to read and discard the complete two rows.
+%\cite{hbase.stavros.harizopoulos.2009}
+\begin{itemize}
+	\item 01: 10, Smith, Joe, 40000; 
+	\item 02: 12, Jones, Mary, 50000; 
+	\item 03: 11, Johnson, Cathy, 44000; 
+	\item 04: 22, Jones, Bob, 55000;
+\end{itemize}
+
+
+\paragraph{Column-oriented databases:}
+One row could have an index followed by an entry of the column.
+\begin{itemize}
+	\item 10:01, 12:02, 11:03, 22:04;
+	\item Smith:01, Jones:02, Johnson:03, Jones:04;
+	\item Joe:01, Mary:02, Cathy:03, Bob:04;
+	\item 40000:01, 50000:02, 44000:03, 55000:04;
+\end{itemize}
+If we are searching the 3rd first name in the table it is just necessary to scan the block for the first names, in this case the second file, instead the block with the complete row, including names, address, numbers, account details, etc. 
+%\cite{hbase.stavros.harizopoulos.2009}
+
+
+\newpage
+\section{HBase - Introduction}
+HBase is a column oriented DBMS, with a few differences to the explanation about general column-oriented DBMS in the introduction above.
+
+HBase is designed to manage a lot of data. 
+More precisely the goal is to store very large tables with billions of rows and millions of columns.
+It is open-source, distributed, versioned and non-relational.
+\cite{hbase.apache.foundation.2017} \cite{hbase.hortonworks.2017}
+
+The main difference to other column oriented databases is that one column is not stored in one block and thus in a file. 
+Instead HBase groups some columns in column families.
+\cite{hbase.daniel.abadi.2010}
+
+These families are organized by the administrator.
+The administrator has to group often used data combinations like the column first-name and the column last-name into a column family.
+Absolutely every combination is possible.
+But of course the combination should be selected with care so that it makes sense in the project.
+\cite{hbase.daniel.abadi.2010}
+
+So this part is the most elaborating part because only with good design it is possible to pull out the big advantage of HBase.

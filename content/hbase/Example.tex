@@ -1,0 +1,96 @@
+%!TEX root = ../dokumentation.tex
+
+\chapter{Example Project}
+\label{lblHBaseExample}
+
+This chapter's intention is to illustrate some of the technical facts discussed earlier. We used a standalone HBase setup on a virtual machine running Linux Ubuntu. For details on the installation process visit \href{www.hbase.apache.org/book.html\#quickstart}{www.hbase.apache.org/book.html\#quickstart}.
+
+The following examples are executed with the HBase Shell, which is included in HBase's binaries. To start the shell execute 
+\begin{lstlisting}[caption={start HBase shell},label=lst:hbas_shell]
+	$ ./bin/hbase shell
+\end{lstlisting}
+in the HBase directory. 
+
+\textbf{Create table student} \\
+When creating a new table in HBase you need to specifiy the table's name as well as at least one column family. Additionally you can add parameter to specify the table setup. 
+\begin{lstlisting}[caption={create table},label=lst:create_table]
+	> create 'student', {NAME=>'personal',VERSIONS=>5}, 'school'
+\end{lstlisting}
+This command creates the table named \textit{student} with two column families \textit{personal} and \textit{school}. The column family personal is configured to store five versions of each column cell. This means that overwritten values are accessible until five overwrites. 
+
+\textbf{Add row} \\
+To insert a value you need to provide table name, row key, column family, column qualifier and value. 
+
+\begin{lstlisting}[caption={insert values},label=lst:insert_values]
+	> put 'student', 'Alexandra', 'personal:street', 'Schillerstrasse 31'
+	> put 'student', 'Alexandra', 'personal:hair', 'blond'
+\end{lstlisting}
+
+The first line adds the value \textit{Schillerstraße 31} to the row \textit{Alexandra} in the table \textit{student}. The column family of this value is \textit{personal} and the column qualifier is \textit{street}. 
+
+\textbf{Scan table} \\
+When executing the following command all table entries are listed.
+\begin{lstlisting}[caption={scan table},label=lst:scan_table]
+	> scan 'student'
+\end{lstlisting}
+
+The output will look similar to this:
+
+\begin{lstlisting}[caption={output of the table scan 1},label=lst:table_scan_output]
+	ROW          COLUMN+CELL
+	Alexandra    column=personal:hair, timestamp=1490775709059, value=blond
+	Alexandra    column=personal:street, timestamp=1490775705439, value=Schillerstrasse 31
+	1 row(s) in 0.0600 seconds
+\end{lstlisting}
+
+\textbf{Update value} \\
+The value \textit{blond} should be updated to \textit{pink}.
+\begin{lstlisting}[caption={update value},label=lst:update_value]
+	> put 'student', 'Alexandra', 'personal:hair', 'pink'
+\end{lstlisting}
+Therfor again tablename, rowkey, column family and column qualifier are needed.
+The output of scan table will look like this:
+\begin{lstlisting}[caption={output of the table scan 2},label=lst:table_scan_output_2]
+	ROW          COLUMN+CELL
+	Alexandra    column=personal:hair, timestamp=1490776188067, value=pink
+	Alexandra    column=personal:street, timestamp=1490775705439, value=Schillerstrasse 31
+	1 row(s) in 0.0370 seconds
+\end{lstlisting}
+
+Only the most recent value is shown. To get more versions of an updated value a different command is needed.
+
+\begin{lstlisting}[caption={get multiple versions},label=lst:get_multiple_versions]
+	> get 'student', 'Alexandra', {COLUMN=>'personal',VERSIONS=>2}
+\end{lstlisting}
+
+\newpage
+Now two versions of the values stored within column family \textit{personal} are displayed.
+\begin{lstlisting}[caption={output of the table scan 3},label=lst:table_scan_output_3]
+	COLUMN                                       CELL
+	personal:hair        timestamp=1490776188067, value=pink
+	personal:hair        timestamp=1490775709059, value=blond
+	personal:street      timestamp=1490775705439, value=Schillerstrasse 31
+	3 row(s) in 0.0880 seconds
+\end{lstlisting}
+\textbf{Note:} This is only possible if the column family is set to more than one version on table initiation. 
+
+\textbf{Types} \\
+To demonstate stat HBase does not enforce types, we updated a string value to an integer value.
+\begin{lstlisting}[caption={put integer into cell},label=lst:put_integer]
+	> put 'student', 'Alexandra', 'personal:hair', 3
+\end{lstlisting}
+HBase executes this without any (error) message. In fact everything is just stored as byte array.
+The output looks like this:
+\begin{lstlisting}[caption={output of the table scan 4},label=lst:table_scan_output_4]
+	ROW          COLUMN+CELL
+	Alexandra    column=personal:hair, timestamp=1490777492998, value=3
+	Alexandra    column=personal:street, timestamp=1490775705439, value=Schillerstrasse 31
+	1 row(s) in 0.0170 seconds
+\end{lstlisting}
+
+\textbf{Drop table} \\
+To delete the table it must be disabled before it can be dropped.
+\begin{lstlisting}[caption={drop table},label=lst:drop_table]
+	> disable 'student'
+	> drop 'student'
+\end{lstlisting}
