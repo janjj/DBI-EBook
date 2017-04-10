@@ -1,0 +1,9 @@
+%!TEX root = ../dokumentation.tex
+
+\section{Conclusion}
+HBase implements new column oriented concepts that Google introduced with BigTable. As a NoSQL database HBase does not need a fixed schema which makes it hard to use when the application is designed for RDBMS. Without the relational schema the key design in HBase is more important than in other databases. This on the one hand provides benefits but on the other hand also increases the effort of designing suitable keys. 
+
+As a part of Apache Hadoop HBase supports clustering and distribution on many layers. HBase stores its data distributedly with HDFS while HBase's files are stored over multiple regions and servers. This and the underlying data structures improve the performance when inserting huge amount of data while still obtaining a high speed for analytical operations. Therfore, HBase is suitable for Big Data applications that deal with terabytes of data. 
+
+Accordingly HBase is not suitable for relatively small amount of data. The costs of maintaining the Hadoop ecosystem and the additional effort on the key design do not generate substantial value for small applications.
+
