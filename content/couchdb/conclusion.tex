@@ -1,0 +1,68 @@
+\section{Conclusion}
+In conclusion, this book explains the background to understand the concept of the document-based database CouchDB. The provided information give a deep inside on the document structure, the REST http API and security aspects the user gets in contact by using CouchDB.
+In addition to the provides overview, there are some advantages and some disadvantages of using CouchDB that are notable.\\
+\newline
+On the one hand, big advantages of CouchDB are the scalability and fast read and write operations. 
+More features that can be described as advantages are for example the synchronisation, offline usage and the support for mobile devices. CouchDB has the ability to synchronise between multiple databases and in addition the offline functionality provide the function that data on the device can be manipulated and synced later, when the device get a connection to the main database \parencite{MoronyJosh}. \\
+%Synchronising two or more databases can be astoundingly %difficult, and in order to provide offline functionality %in an application, we need to provide local data to the %user that can be read and modified, and then later synced %back to the main database or databases when a network %connection becomes available.
+%Built for Offline
+%CouchDB can replicate to devices (like smartphones) that %can go offline and handle data sync for you when the %device is back online.
+%
+%Distributed Architecture with Replication
+%CouchDB was designed with bi-direction replication (or %synchronization) and off-line operation in mind. That %means multiple replicas can have their own copies of the %same data, modify it, and then sync those changes at a %later time.
+Another important advantage is the way the document storage is implemented. Based on the fact that everything is stored as documents and there is no pre-defined schema the way how the datasets are designed is up to the user. This creates a lot of flexibility for data storage, but it also has its downsides and it can be difficult to learn because there is no \textit{100\%} correct way to store the data \parencite{MoronyJosh}. 
+%Unlike a relational database where we need to describe what the structure of our data is before we insert it (a schema), and can only insert data that matches that schema, with CouchDB you can store whatever kind of data you want, whenever you want. This doesn’t mean that there is no structure to a CouchDB database, it is critically important that you add data in a way that makes sense and will perform well for your application. This creates a lot of flexibility for data storage, but it also has its downsides and it can be quite hard to learn because there is no “100percent correct” way to store the data, and in many cases, it’s better to do things you will probably have learned to avoid like duplicating data.\cite{MoronyJosh}
+%I'd say the following are some of CouchDB's advantages:
+%
+%the document model
+%simple REST API
+%changes feed
+%relatively easy to set up multiple nodes but with some %caveats.
+%I like the document model because it matches up with most %of the real world uses I think a lot of us have. It's %easy to serialise objects to JSON, store them and then %retrieve and deserialise when we need them back. With a %column store, like Cassandra, you'd have some of the %schema inflexibility that you get with a relational %database.
+%
+%As a document store, rather than a pure key-value store, %CouchDB also lets you index and query the contents of %your documents, rather than just pulling them out %wholesale. So, if indexing/querying the contents of %documents is important then it'll suit you better than %something like Riak.
+%
+%Against MongoDB, I think the main advantage is that %CouchDB is architected in a way that makes it easier to %grow a cluster. I mean, this depends on your precise %needs. For example, with CouchDB you can add more and %more nodes relatively easily and set up replication %between them. That can be great for availability but %you're replicating the same full data set on each node, %so it might be so great for really large data sets.
+%
+%You might want to look at CouchDB's spritual descendant, %Couchbase. Couchbase is also open source and was created %by many of the same team. It uses hash-based partitioning %and clustering, similar to Cassandra, but retains the %document model. So, it's pretty much linearly scalable %but lets your work with schema-unenforced JSON docs.
+%
+%\cite{RevellMatthew}
+%Document Storage
+%CouchDB stores data as "documents", as one or more %field/value pairs expressed as JSON. Field values can be %simple things like strings, numbers, or dates; but %ordered lists and associative arrays can also be used. %Every document in a CouchDB database has a unique id and %there is no required document schema.
+%
+%
+%
+%Map/Reduce Views and Indexes
+%The stored data is structured using views. In CouchDB, %each view is constructed by a JavaScript function that %acts as the Map half of a map/reduce operation. The %function takes a document and transforms it into a single %value that it returns. CouchDB can index views and keep %those indexes updated as documents are added, removed, or %updated.
+Furthermore, CouchDB provide a simple REST API where all items have a unique URI that gets exposed via HTTP.
+%It uses the HTTP methods POST, GET, PUT and DELETE for the four basic CRUD (Create, Read, Update, Delete) operations on all resources.
+In addition, the build-in administration interface Futon that is accessible via Web provide a easy way to interact with the database and is with the REST API feature one of the most important advantages. \\
+%%
+%%%%%%%%
+%Data in CouchDB, like in many (but not all) NoSQL %databases, is stored as documents and there is no %pre-defined schema. Unlike a relational database where we %need to describe what the structure of our data is before %we insert it (a schema), and can only insert data that %matches that schema, with CouchDB you can store whatever %kind of data you want, whenever you want. This doesn’t %mean that there is no structure to a CouchDB database, it %is critically important that you add data in a way that %makes sense and will perform well for your application. %This creates a lot of flexibility for data storage, but %it also has its downsides and it can be quite hard to %learn because there is no “100percent correct” way to %store the data, and in many cases, it’s better to do %things you will probably have learned to avoid like %duplicating data.\cite{MoronyJosh}
+%%%
+\newline
+On the other hand, some drawbacks are worth mentionable.
+%Eventual Consistency
+CouchDB guarantees eventual consistency to be able to provide both availability and partition tolerance. In detail, this implies two write and read operations in the same time frame will cause the problem, that the update will not necessarily be see-able \parencite{EminGunSirer}.
+It is likely that some use-cases do not work with this issue. For example, selling concert tickets, would not work with this model \parencite{EminGunSirer}. \\
+%%%CONS
+%Cassandra and Couch are eventually consistent, which %implies that a client might perform an update, receive an %acknowledgment, yet another client performing a read will %not necessarily see that update. Your applications may or %may not be able to deal with this kind of behaviour in the %data store. Many applications, such as selling concert %tickets, would not work with this model. Others, such as %shopping carts, could perhaps work ok, assuming that %their users can clear up occasional %inconsistencies.\cite{EminGunSirer}
+%Other features include document-level ACID semantics with %eventual consistency, (incremental) MapReduce, and %(incremental) replication. One of CouchDB's distinguishing %features is multi-master replication, which allows it to %scale across machines to build high-performance systems.
+%
+%
+%
+%After the installation of CouchDB it is very important to %check the several security functions. The most important %point is to create a valid user structure which differs %between the three user roles:
+%\begin{enumerate}
+%\item Server Administrator
+%\item Database administrator
+%\item Database members
+%\end{enumerate}
+%
+%%%%%
+%
+%
+%
+Remarkable is that only a few big projects are published which use CouchDB. For example, the platform readwrite published that "the Compact Muon Solenoid Experiment (CMS) at CERN (The European Organization for Nuclear Research) will deploy the NoSQL database CouchDB into production this summer"\parencite{KLINTFINLEY.2010}. In addition, CouchDB is also used by CloudWork\parencite{BrunoPedro.2013}. \\
+Resting upon the pros and cons it is noticeable that every use-case for the database has to be conceptualised to proof either CouchDB is the right solution or not. Thereby, this ebook has the purpose to contribute strongly to the overall course ebook about NoSQL databases. 
+

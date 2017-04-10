@@ -1,0 +1,82 @@
+\section{REST http API}
+
+
+To control and get access to a CouchDB instance it is possible to use a REST API. This API is the first selection of managing the database but it is also possible to use Fauxton which is an administration interface for CouchDB. This chapter will introduce the REST API and will give an overview about the main functionalities. First of all some basics will be explained after that the sections of the API will be introduced. The different sections would be: The server part, the database part, the document part and the replication part.
+
+\subsection{Basics}
+
+The REST API is used over standard http or https methods. The CouchDB API doesn’t support all possible HTTP requests methods for example the “PATCH” method isn’t supported. Possible methods are: GET, HEAD, POST, PUT, DELETE and COPY. For example the GET method is used to get a specific item of the database and the PUT method allows to create a new object in the database. The root URI to send a request would be \url{http://www.domain.tld:portnumber/}  at the default configuration. But also many other URIs with the root URI at the beginning are existing for every single operation \parencite{CouchDBRestRFCPatch, CouchDBRestBasic}. \\
+To get or send the needed data a standard data structure has to be defined. The CouchDB REST API uses the JavaScript Object Notation (JSON) to structure the data. The motivation for JSON is “because it is the simplest and easiest solution for working with data within a web browser, as JSON structures can be evaluated and used as JavaScript objects within the web browser environment. JSON also integrates with the server-side JavaScript used within CouchDB.“ \parencite{CouchDBRestJson}  \\
+For this reason it is also recommend to mostly set the header of the http request at “accept” to “application/json” instead something special is needed. One additional thing to know is the fact that the header “Content-Type” should be “text/plain” even if the information is saved at the JSON format. If the json from the user was incorrect for example if it was not formatted correctly the response of the API would be the HTTP Status Code 500. In addition to this Status Code the API also uses other standard HTTP Status Codes like 200, 201, 400, 404 or others. But not all codes are supported but the meaning of all used codes is documented\parencite{CouchDBRestBasic}.
+
+\subsection{The Server Part}
+ 
+The server part of the REST API starts at the root URI \url{http://www.domain.tld:portnumber/}. For example a get request to this URI gives a response with information about the status of the database server. 
+Generally the server part has different URIs which can be used to configure the server or to get specific information. For example it is possible to call \url{http://www.domain.tld:portnumber/_all_dbs} which returns all created databases at the server.
+It would be look like this json string: [“testdb","testdb1","testdb2"]. 
+If no database exists it would give an empty JSON array: []. 
+Finally the server part concludes all necessary information about the server and also gives some options which are helpful for the administration part of the database server \parencite{CouchDBRestServer}.
+
+\subsection{The Database Part}
+\label{subsec:TheDatabasePart-1}
+
+The database part of the REST API concludes all operations which can be used for one database. It starts with creating a database and goes over to add entries and configure the security options of a database.
+An example to create a database would be following PUT request at the URI:
+\url{http://localhost:5984/<databasename>/_security}. \\
+Another example would be to configure the security settings of the database “testdb”:
+First the current settings would be requested over GET  \url{http://localhost:5984/testdb/_security} with the response which can be seen at figure \ref{SecurityMessage}.
+\begin{mylisting}{\label{SecurityMessage}Example security response}
+{
+    {
+        "admins":{"names":["admin"],
+        "roles":["adminstrators"]},
+        
+        "members":{"names":["user"],
+        "roles":["tester"]},
+        "ok":true
+    }
+}
+\end{mylisting} 
+\newpage 
+After that a PUT request to the same URI with the body which can be seen at figure \ref{FigurePutanswer} is send.
+\begin{mylisting}{\label{FigurePutanswer} Put answer}
+{
+    {
+        "admins":{"names":["admin","admin2"],
+        "roles":["adminstrators"]},
+        "members":{"names":["user"],
+        "roles":["tester"]},
+        "ok":true
+    } 
+}
+\end{mylisting}
+The request returns only a short answer from the REST API:\begin{quote}{"ok":true} \end{quote}
+A second GET request to the same URI returns the string which can be seen at figure \ref{FigureGetresponse}. 
+\begin{mylisting}{\label{FigureGetresponse} Get response}
+{
+    {
+        "admins":{"names":["admin","admin2"],
+        "roles":["adminstrators"]},
+        "members":{"names":["user"],
+        "roles":["tester"]},
+        "ok":true
+    }
+}
+\end{mylisting}
+All URIs which belongs to the database part of the API are available under  \url{http://localhost:5984/<databasename>/<command>}. So only the right database name and the right command has to be appended to the root URI \parencite{CouchDBRestDatabases}.
+
+\subsection{The Document Part}
+
+The document structure is a central element of the database and it has also an own part in the API. This part manages the CRUD (create, read, update, delete) operations to the documents which belongs to one database. The design of the REST API gives the possibility to manage more then one database so it is necessary to have the possibility to select the database first and then select the document. \\
+In the chapter \nameref{subsec:TheDatabasePart-1} the database part is presented with the \url{http://localhost:5984/<databasename>} path. This path is going to be expanded to \url{http://localhost:5984/<databasename>/<documentid>}. This basic path could be used for different options which can be used to the document. This options are selected about the HTTP request methods. For example PUT is used to create a new document with information in JSON string which is stored in the request body. Other available methods are: HEAD, GET, DELETE and COPY.  \\
+All necessary options to the documents are realized with this one URI without the part of the attachments. CouchDB has the possibility to add attachments to a document. The management of this attachments over the REST API is realised on the same way like the management of the documents. The only difference is the missing HTTP COPY method and a different path. For the attachments the path \url{http://localhost:5984/<databasename>/<documentid>/<attachmentname>} is used. About this path all operations can be executed \parencite{CouchDBRestDocuments}.
+
+\subsection{The Replication Part}
+
+CouchDB also supports the replication between two databases. This option is managed by some settings which can be managed by the URI \url{http://localhost:5984/_replicate}. With this URI is only one single replication triggered it is not like a background job which is executed every X minutes. The interesting part of this URI is the fact that is not a correct RESTful API method. The RESTful architecture has one principle which means that every request gives a representation of an object. The call for the replication is only the call of a procedure which is located on the server or on another remote location \parencite{CouchDBRestReplication}.
+
+\subsection{Conclusion}
+
+Finally the REST API of CouchDB gives the possibility to do all operations which are possible about an graphic user interface also about the REST API and the HTTP protocol. But also it should be noticed that not all methods are complete RESTful and they are mixed with methods which comply with the REST architecture. 
+The documentation argue with the fact that they want to use the optimal technique for all events and so they decide to mix both ways together to give the user a better experience. 
+
