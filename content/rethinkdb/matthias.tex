@@ -97,14 +97,14 @@ Changefeeds are the main part of RethinkDB's real-time functionality.
 Almost all queries can be used as a changefeed.
 With a Changefeed you recive any changes on your query.
 
-\begin{2stlisting}[frame=single, caption=example usage, label=refdoc]
+\begin{lstlisting}[frame=single, caption=example usage, label=refdoc]
 r.table('project').changes().run(conn, (err, cursor) => {
 	cursor.each((err, row) => {
 		if(err) throw err;
 		processRow(row);
 	})
 });
-\end{2stlisting}
+\end{lstlisting}
 
 The \code{changes()} method returns a cursor.
 The \code{each()} method of that cursor object iterates over each Change.
@@ -113,12 +113,12 @@ This iteration will be infinit.
 For example a new project will be added \code{{id:3, name: "awesome Project", priority:1}} into the project table.
 The \code{each()} callback will be called with the changes of the table.
 
-\begin{3stlisting}[frame=single, caption=example usage, label=refdoc]
+\begin{lstlisting}[frame=single, caption=example usage, label=refdoc]
 {
 	old_val: null,
 	new_val: {id:3, name: 'awesome Project', priority:1}
 }
-\end{3stlisting}
+\end{lstlisting}
 
 If the callback for \code{each} returns false, the cursor will stop iterating.
 
@@ -126,9 +126,9 @@ If the callback for \code{each} returns false, the cursor will stop iterating.
 
 A single docuemtn changefeed returns only changes to the document.
 
-\begin{4stlisting}[frame=single, caption=example usage, label=refdoc]
+\begin{lstlisting}[frame=single, caption=example usage, label=refdoc]
 r.table('project').get(3).changes().run(conn, callback);
-\end{4stlisting}
+\end{lstlisting}
 
 This would listen for changes of the project with id 3.
 
@@ -139,11 +139,11 @@ The method \code{changes()} integrates with the ReQL language.
 
 The chaning of ReQL methods can be as complex as you wish.
 
-\begin{5stlisting}[frame=single, caption=example usage, label=refdoc]
+\begin{lstlisting}[frame=single, caption=example usage, label=refdoc]
 r.table('project').changes().filter(
     r.row('new_val')('priority').lt(r.row('old_val')('priority'))
 )('new_val').run(conn, callback)
-\end{5stlisting}
+\end{lstlisting}
 
 This will be notified on every change, there the priority is lower as the previous.
 
