@@ -1,6 +1,5 @@
 \section{Limits}
 
-
 RethinkDB has some limitations. 
 Some are hard limitations and some are soft limitations.
 \cite{RethinkLimits}
@@ -29,4 +28,64 @@ Typically encrypted and compressed file systems will not support this option.
 
 Numbers are double precision IEEE 754 floating point.
 Integers are stored precisely from -2^53 to 2^53, outside that range they will be rounded.
-\section{next}
+
+\section{Data Types}
+
+RetinkDB has all the basic Data types. 
+Number, string, boolean, object, array and the \code{null} value. 
+Additionaly RethinkDB stores specific data types like tables, streams, selections, binary objects, time objects, geometry data types, and grouped data.
+\cite{RethinkDataTypes}
+
+\textbf{Numbers} can bee Integer or Floatingpoint values. 
+They will be stored with 64-bit percision.
+\code{NaN} or Infinit can not be stored.
+
+\textbf{String} are stored with UTF-8 encoding.
+
+\textbf{Booleans} can be \code{true} or \code{false}
+
+\textbf{Null} is a special value.
+It is not the number zero or an empty string.
+It symbolizes the absence of any other value.
+
+\textbf{Objects} are key-value pairs.
+Any valid JSON object is a valid RethinkDB object.
+\begin{lstlisting}[frame=single, caption=example Object, label=refdoc]
+{
+	"key"  : "valueString",
+	"key2" : false,
+}
+\end{lstlisting}
+The keys can only be strings, but the values can be any data type.
+A RethinkDB Document is a object.
+
+\textbf{Arrays} are lists of values.
+Arrays can be empty.
+It is not enforced to use only on type of values in an Array.
+But it is highly recommended.
+\begin{lstlisting}[frame=single, caption=example Arrays, label=refdoc]
+[
+	"valueString",
+	false,
+]
+[]
+\end{lstlisting}
+The values of an Array can be any data type.
+If you use arrays for many values, more than 100.000 you should notice that arrays are fully loaded into Server RAM before send to the client.
+
+\\
+Specific Data types
+
+\textbf{Databases} are returned after a \code{db} function call.
+
+\textbf{Tables} are returned after a \code{getAll} function call.
+Their behavior is similar to selections.
+
+\textbf{Selections} are the result of \code{filter} ot \code{get} function calls.
+Selections comes in three variants \code{Selection<Object>}, \code{Selection<Array>} and \code{Selection<Stream>}.
+Selctions are wirteable.
+
+\textbf{Streams} are like arrays, lists.
+Streams are not writable.
+Streams are lazy, they give you the next dataset if the current has been processed.
+With Streams you can read tremendous long lists of Data, without holding everything in Memory.
