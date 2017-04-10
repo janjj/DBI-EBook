@@ -1,0 +1,16 @@
+\section{Limits}
+
+
+RethinkDB has some limitations. Some are hard limitations and some are soft limitations.
+\cite{RethinkLimits}
+
+
+Shards are hard limited to 64. the number of databases are not limited by anything than diskspace and RAM. Likewise the number of tables. The recommended limit for a single Document is 16MB in size. This should be respected for preformance reasons. Arrays in a RethinkDB Server have a limited length. This length can be configured and is by default 100.000 elements. Primary keys are limited to 127 characters. At secondary keys there is no hard limit. But if a secondary key exceeds its limit, RetinkDB will use linear search for the following characters.
+
+A JSON queries are hard limited as well. They can only be 64 MB in size or smaller.
+
+The ordering in RethinkDB is byte-wise. The functions orderBy and between uses the byte representaiton of the carater. This has the result that RethinkDB dose not normalize identical characters with multiple codepoints. For example the character "é" has the UTF-8 representation \code{\\u0065\\u0301} and \code{\\u00e9}, the will be grouped separately.
+
+The usage of the cli option \code{--direct-io} is limited to file systems that support it. Typically encrypted and compressed file systems will not support this option.
+
+\section{next}
