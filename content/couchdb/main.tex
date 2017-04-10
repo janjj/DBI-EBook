@@ -1,0 +1,76 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+
+\title{CouchDB Ebook}
+\author{Leon Ehrenhart\thanks{4324815}, Ines Frey\thanks{5019968}, Tobias Fuertjes\thanks{7747179}}
+\date{April 2017}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[hyphens]{url}
+\usepackage{nameref}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{listings}
+\usepackage[style=apa,backend=biber]{biblatex}
+\usepackage{csquotes}
+\usepackage[british]{babel} 
+
+\DeclareLanguageMapping{british}{british-apa}
+\usepackage{xcolor}
+\usetikzlibrary{shadows}
+\usepackage{caption}
+\usepackage{hyperref} %for correct links in references
+%%%%
+%CODEDESIGN:
+\definecolor{codeBackground}{rgb}{0.9, 0.9, 0.8}
+\lstnewenvironment{mylisting}[1]{
+  \lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    moredelim=**[is][\bfseries]{|}{|},% bold everything in between ||
+    moredelim=**[is][\itshape]{*}{*}  % italic everything in between **
+  }%
+\mdframed[backgroundcolor=codeBackground,shadow=true,shadowsize=2pt,shadowcolor=black!30]%
+}{%
+  \endmdframed
+  \captionsetup{justification=centering}
+  \captionof{figure}{#1} 
+  \bigskip
+  \ignorespaces
+}
+
+%%%%
+
+
+\bibliography{references}
+
+\input{intro}
+
+\newpage
+
+\input{structure}
+
+\newpage
+
+\input{rest}
+
+\newpage
+
+\input{security}
+
+\input{conclusion}
+
+%CouchDB Introduction → Tobias & Leon & Ines Document %Structure → Leon
+%REST HTTP API basics → Tobias
+%Security → Ines
+%Conclusion → Tobias & Leon & Ines
+
+%%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=1.7]{universe.jpg}
+%\caption{The Universe}
+%\label{fig:univerise}
+%\end{figure}
+%\bibliographystyle{plain}
+%\lstlistoflistings
