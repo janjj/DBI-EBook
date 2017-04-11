@@ -1,0 +1,58 @@
+\section{What is RethinkDB}
+
+BlaBla
+
+\section{How RethinkDB works}
+
+\subsection{Data storage in Rethinkdb}
+
+\subsubsection{The data structure}
+
+RethinkDB stores data as a B-tree-structure. A B-tree is a data structure which is balancing itself and allows filtering and sorting in logarithmic time[wikipedia]. This B-tree is saved on a BTRFS (B-TRee FileSystem [wikipedia]) in large structures. This enables the copy-on-write scheme provided by BTRFS thus making it possible to repair saved data from the copied clone. Other benefits to this filesystem are a garbage compactor to reduce older copies, low cpu-overhead, optimization for solid-state drives, data consistency (more on that in the chapter **ACID and CAP**) , b-tree aware caching* and multi version control (-> **MVCC**) .
+- [ ] *@TODO: add b-tree aware caching*
+
+\subsubsection{partioning and multi-datacenter support}
+
+Data in RethinkDB can be saved on multiple servers. This is done by replicating databases and providing each of them with a specific tag such as 'de\_east' or 'westeros'. A table can have an non-specific amount of replicas on each server. 
+On servers data can be partitioned into shards and furthermore tagged like replicas.  The partition is done by a range of specific sharding algorithms and uses the primary key of each table. This means, that a shard key and a primary key is identical. For example if a data set has a primary key containing only letters and is ordered alphabetical, the sharding algorithm will likely split the data around the key 'm'. Thus the new two partitions containing every data with a key from 'a' to 'm' and from 'n' to 'z'. Evidently this algorithm always tries to part at the best pivot to have new partitions in equal size.
+
+\subsection{The atomicity model}
+
+
+
+\subsection{ACID and CAP theorems in RethinkDB}
+
+RethinkDB’s architecture is based on an atomicity model. Thus either a command is executed or not, there is no middle-ground. Atomicity is part of the ACID paradigm for databases. The scale of this scheme makes it differ from other NoSQL databases. That is, because every set of operation is executed atomic as long as this set is deterministic. In the basic configuration non-atomic queries will automatically throw an error. This behavior can be disabled by setting a flag. 
+RethinkDB has also support for every other ACID paradigm except full isolation and absolute data consistency and therefore might not the best choice if full ACID-Support is needed. But RethinkDB provides a basic consistency as specified within the CAP-theorem. This works due to the fact, that every shard has a single replication and read and write actions are performed on this replication but not on the shard itself. Data remains immediately consistent and conflict-free. 
+The Database also provides availability needed by the CAP-theorem as data is also accessible both up-to-date and out-of-date. Out-of-date queries are executed on a snapshot and without trying to get the most current data set. This means, that these queries are faster and guarantee availability but may not return nor access the most current data. The up-to-date queries are assuring that they return the latest data consistent and artifact-free. As before mentioned data is not absolutely consistent. This tradeoff roots within the partitioning. RethinkDB assures data to be consistent on the same 
+
+\subsection{multiversion concurrency control}
+
+\section{The query language ReQL}
+
+RethinkDB has its own query language called ReQL. A query contains the table, an action and the order to run on a specific database connection. For Example the query to get an id (1) from a table (test) looks like this:
+
+\begin{lstlisting}[frame=single, caption=get document from Database  (javascript driver), label=rget]
+r.table("test").get(1).run(connection)
+\end{lstlisting}
+
+One idiomatic aspect of ReQL is already evident in this example. ReQL is a chain of commands. Multiple queries can be written as a one-liner and are thus executed as one without disturbance. If there are dependencies on another query one should use this chain-technique to make sure it is executed in the right order. This works due to the fact, that the query is only parsed and executed on the server while being build on the client. On top of that, RethinkDB is lazy executing the queries.  It immediately stops upon satisfaction. 
+Furthermore are those queries functional and allows adding lambda functions as parameter. RethinkDB has build-in support for example for javascript code through the V8-Engine, map-reduce, table-joins and math.
+
+\begin{lstlisting}[frame=single, caption=create the table 'test', label=createTable]
+r.db("test").tableCreate("test", options).run(connection)
+\end{lstlisting}
+
+Every table created gets a primary key for indexing. By default it is id but this can be changed by providing an option:
+\begin{lstlisting}[frame=single, caption=options for create table, label=cTableOptions]
+{primaryKey: 'name'}
+\end{lstlisting}
+
+By setting this option as in the example, the table now is indexing every row under „name“.\code{List.class}
+- [ ] *@TODO: other options (shards and replicas)*
+
+\subsection{query executing}
+
+
+
+\section{RethinkDB perfomance analysis}
