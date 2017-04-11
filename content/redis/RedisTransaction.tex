@@ -1,0 +1,67 @@
+\subsection{Transactions}
+In Redis it is possible for the user to execute a group of commands in a single step with the commands MULTI, EXEC, DISCARD and WATCH. It guarantees that the transactions are still isolated and atomar:
+
+\begin{itemize}
+  \item Isolated: It is not possible that any other command of another client is executed in between the commands of one transaction.
+  \item Atomar: It is only possible to execute every command of a transaction or none of them are proceeded.
+\end{itemize}
+
+
+\subsubsection{MULTI / EXEC}
+
+By using MULTI you can start a transaction. Every following command will be queued. When the user calls EXEC these commands are executed. An array of the replies will be returned in the same order like the commands were entered.
+
+\begin{lstlisting}[language=bash]
+  > MULTI
+ OK
+  > INCR foo
+ QUEUED
+  > INCR bar
+ QUEUED
+  > EXEC
+ 1) (integer) 1
+ 2) (integer) 1
+\end{lstlisting}
+
+This example increments the keys foo and bar in one transaction.
+
+\subsubsection{MULTI / DISCARD}
+To abort a transaction you need the command DISCARD. It will flush the queue and exit the transaction.
+
+\begin{lstlisting}[language=bash]
+  > SET foo 1
+ OK
+  > MULTI
+ OK
+  > INCR foo
+ QUEUED
+  > DISCARD
+ OK
+  > GET foo
+ "1"
+\end{lstlisting}
+
+
+
+
+\subsubsection{WATCH}
+In the following example the key mykey is increased without using INCR.
+\begin{lstlisting}[language=bash]
+ val = GET mykey
+ val = val + 1
+ SET mykey $val
+\end{lstlisting}
+With several clients it is possible to get problems in this example. If two clients want to increase the same key at the same time there will be the wrong result. For example mykey has the value 1. Then both clients read this value and add 1. They both set the value to 2. But the result should be 3 because the key should be increased twice.
+\newline
+To solve this problem Redis has the command WATCH. WATCHED keys are monitored to check changes against them. If one watched key is changed by another client the transaction aborts, EXEC returns null and the user can repeat the operation. UNWATCH, EXEC and DISCARD flush all watched keys.
+
+\begin{lstlisting}[language=bash]
+ WATCH mykey
+ val = GET mykey
+ val = val + 1
+ MULTI
+ SET mykey $val
+ EXEC
+\end{lstlisting}
+In this example the tranaction will abort if any other client changes the value of mykey between the WATCH and EXEC command. \cite{RedisTransactions}
+
