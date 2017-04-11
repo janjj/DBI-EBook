@@ -24,8 +24,8 @@ The database part of the REST API concludes all operations which can be used for
 An example to create a database would be following PUT request at the URI:
 \url{http://localhost:5984/<databasename>/_security}. \\
 Another example would be to configure the security settings of the database “testdb”:
-First the current settings would be requested over GET  \url{http://localhost:5984/testdb/_security} with the response which can be seen at figure \ref{SecurityMessage}.
-\begin{mylisting}{\label{SecurityMessage}Example security response}
+First the current settings would be requested over GET  \url{http://localhost:5984/testdb/_security} with the response which can be seen following: 
+\begin{lstlisting}[frame=single, caption= Example security response]
 {
     {
         "admins":{"names":["admin"],
@@ -36,10 +36,10 @@ First the current settings would be requested over GET  \url{http://localhost:59
         "ok":true
     }
 }
-\end{mylisting} 
+\end{lstlisting} 
 \newpage 
-After that a PUT request to the same URI with the body which can be seen at figure \ref{FigurePutanswer} is send.
-\begin{mylisting}{\label{FigurePutanswer} Put answer}
+After that a PUT request to the same URI with the following body is send:
+\begin{lstlisting}[frame=single, caption= Put request body]
 {
     {
         "admins":{"names":["admin","admin2"],
@@ -49,10 +49,11 @@ After that a PUT request to the same URI with the body which can be seen at figu
         "ok":true
     } 
 }
-\end{mylisting}
-The request returns only a short answer from the REST API:\begin{quote}{"ok":true} \end{quote}
-A second GET request to the same URI returns the string which can be seen at figure \ref{FigureGetresponse}. 
-\begin{mylisting}{\label{FigureGetresponse} Get response}
+\end{lstlisting} \\
+The request returns only a short answer from the REST API: 
+\begin{quote}{"ok":true} \end{quote}
+A second GET request to the same URI returns the string which can be seen following:
+\begin{lstlisting}[frame=single, caption=  Get response]
 {
     {
         "admins":{"names":["admin","admin2"],
@@ -62,8 +63,9 @@ A second GET request to the same URI returns the string which can be seen at fig
         "ok":true
     }
 }
-\end{mylisting}
-All URIs which belongs to the database part of the API are available under  \url{http://localhost:5984/<databasename>/<command>}. So only the right database name and the right command has to be appended to the root URI \cite{CouchDBRestDatabases}.
+
+\end{lstlisting}
+All URIs which belongs to the database part of the API are available under  \url{http://localhost:5984/<databasename>/<command>}. So only the right database name and the right command has to be appended to the root URI \parencite{CouchDBRestDatabases}.
 
 \subsection{The Document Part}
 

@@ -1,0 +1,63 @@
+
+\section{Use Cases}
+In the following you will learn something about four use cases which you can realize with Redis. There are many more but these examples give a deeper look into Redis and explain why choosing it.
+\subsection{Caching}
+The first use case is called Caching. Caching is important for responsive applications. The advantages of Caching with Redis are easy to say:
+
+First of all it reduces the database traffic if you have fewer database accesses. Without caching you would need to access the database everytime you need to use the data from the database.
+\cite{RedisLabsS}
+
+Caching with Redis is in a way different to Memcache, which is more efficient but a less better choice. Because of the data structures of Redis you gain a lot of power, that it is more efficient.
+
+With allowing key names and values to be as large as 512MB each, its possible to have intelligent caching and manipulation of cached data. Memcache for example limits it to 250 bytes.\cite{Haber}
+
+If Redis is used as a cache, it can happen, that if you you add new data to the server and the memory limit is reached, the server automatically removes some old data.
+
+To handle this correctly, Redis has got six different eviction policies.
+
+The first one is Noeviction. It returns errors if then memory limit is reached and the client tries to execute commands so that more memory would be used than is reachable.
+
+The second policy is named allkeys-Iru. It tries to remove less recently used (LRU) keys before adding new data. With this policy old data can’t be kept, but new data has always space to be added.
+
+The third policy is comparable to allkeys-lru. But the big difference is that it only removes less recently used keys with an expire set. It is called volatile-lru.
+
+The name of allkeys-random explains the next policy in general. If its used, random keys will be removed to make space for new added data.
+
+The fifth policy \grqq volatile-random\grqq{ } removes random keys with an expire set only if space for new data is needed.
+
+The last policy is called volatile-ttl. It evict keys with an expire set and try to evict keys with a shorter time to live first.\cite{RedisLabsLRU}
+\subsection{Leaderboards}
+Leaderboards are generally used in many multiplayer games. No matter if it’s a browser game, a phone application or an AAA game for PC, Playstation or XBox. For a leaderboard it is important to have live updates and if there are many players, it should be fast to get all items.
+
+Redis offers these advantages and that’s why it is used for leaderboards.
+
+The disadvantage behind Redis it’s only possible to get query on keys, not on the exactly field. If you want to search for a specific name in the leaderboard you always have to find the key and then you can go further to the name. That’s the same with points and other things written in a leaderboard.\cite{Socialpoint}
+\subsection{Queues}
+Another use case with Redis are the queues. To explain it there will be shown an example in the following.
+
+An application has got some Producers, to handle tasks. A producer put the tasks on the Redis message queue. This queue is connected with consumers, who can take a task and work on it. While this process is going on, the consumer removes the task from the message queue and puts it onto the Redis processing queue.
+
+It is a kind of a backup queue. There are all tasks who are in process. If there are some issues like network problems or consumer crashes this queue can handle and recover the tasks.
+
+A task can have a timestamp. If the task is currently on the processing queue and it is there for a too long time it can retransferred to the message queue and another consumer can work on it.
+
+This example shows that Redis always uses two queues to handle possible and known issues.\cite{Sabo}
+
+\subsection{Publish / Subscribing}
+The last shown use case is Publish and Subscribe. Redis is perfect if you want to publish a message and you don’t know how many and which users will read the message. And on the other hand the users maybe don’t know anything about the author / publisher.
+
+As a subscriber it is possible to subscribe and unsubscribe the message.\cite{RedisLabsPS}
+
+\subsection{Companies Using Redis}
+\textbf{Twitter} uses Redis for scaling. Every timeline in Twitter is an index of tweets indexed by an id. In Redis you can access the data by the id not by the name or other values. Twitter is in a way a Publish and Subscribe system. A tweet is a small message but will be send to many timelines and they are large. Scroll down on this timeline will load another tweet.
+Redis is not used for on disk features, but for key-value stores and for Ads service. It is used in Twitter since 2010.\cite{HighScalTwitter}
+
+\textbf{Github} should be running fast, for this it uses Redis for a persistent key and value store for the routing information. For the normal data it uses MySQL database.\cite{Github}
+
+\textbf{Snapchat} has a feature where people can post pictures and videos for 24hours to show their friends what they were doing. It’s called Snapchat Stories. For caching these stories, Snapchat uses Redis.\cite{RedisLabsUsing}
+
+\textbf{StackOverflow} uses Redis as the distributed caching layer. But the data will be compressed before sending to Redis. Before using Redis, StackOverflow didn’t use a separate caching tier.\cite{HighScalSO}
+
+\textbf{Flickr} uses Redis as a secondary index for MySQL. It is possible to add and remove a contact, to change a relationship between contacts and to upload and remove user photos. Flickr is connected with Yahoo, so all the user details will be shown on Yahoo as well.\cite{Cohen}
+
+Many other companies like Airbnb, GitHub, Instagram, Trello, Uber and many more are using it for real time updates and caching.\cite{Techstacks}
