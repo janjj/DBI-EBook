@@ -1,0 +1,3 @@
+- neo4j
+  - es werden lediglich die bilder benötigt
+  - quellen liegen in bibliographie.bib im neo4j ordner
