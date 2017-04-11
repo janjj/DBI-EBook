@@ -64,7 +64,7 @@ To convert a document to another format, a show function is needed. Usually, the
 A list is to a view as a show is to a single document. The list function is used to format the view as an HTML table, or a page of information or as XML of your document collection. In this way, a list transforms the entire content of one view into another format \cite{Brown.2012}. CouchDB list functions allow you to create the output of views in any format \cite{CouchDB.Guide}.
 Here’s an example \cite{CouchDB.Guide} design document that contains one list function:
 
-\begin{lstlisting}[frame=single, caption=Example List Function \cite{CouchDB.Guide}, label=cdblistFunc]
+\begin{lstlisting}[frame=single, caption=Example List Function \protect\cite{CouchDB.Guide}, label=cdblistFunc]
 {
 	"_id" : "_design/foo",
 	"_rev" : "1-67at7bg",
@@ -114,7 +114,7 @@ The author Tim Juravich describe JSON as the ``strange markup of the document'' 
 %The basic format of the design document is a JSON document with a field for each of the major content types (view, list, shows)\cite{Brown.2012}.
 %Depending on the type, the definition then contains one or more further definitions\cite{Brown.2012}.
 \newpage
-\begin{mylisting}{Example JSON Document based on \cite{Brown.2012}}
+\begin{lstlisting}{frame=single, caption=Example JSON Document based on \protect\cite{Brown.2012}}
 {
     "language": "javascript",
     "views": {
@@ -131,7 +131,7 @@ The author Tim Juravich describe JSON as the ``strange markup of the document'' 
     "shows": {
         "recipe": "function(doc, req) { return '<h1>' + doc.title + '</h1>' }"
 }
-\end{mylisting}
+\end{lstlisting}
 %%
 %%
 %%
