@@ -79,7 +79,6 @@ Their behavior is similar to selections.
 
 \textbf{Selections} are the result of \code{filter} ot \code{get} function calls.
 Selections comes in three variants \code{Selection<Object>}, \code{Selection<Array>} and \code{Selection<Stream>}.
-They are writeable.
 
 \textbf{Streams} are like arrays, lists.
 Streams are not writable and are lazy, they give you the next dataset if the current has been processed.
@@ -103,8 +102,7 @@ r.table('project').changes().run(conn, (err, cursor) => {
 
 The \code{changes()} method returns a cursor.
 The \code{each()} method of that cursor object iterates over each change.
-If the underlaying data of the query changes the callback of each will be called.
-This iteration will be infinit.
+If the underlaying data of the query changes the callback of \code{each()} will be called.
 For example a new project will be added \code{{id:3, name: "awesome Project", priority:1}} into the project table.
 The \code{each()} callback will be called with the changes of the table.
 
@@ -119,7 +117,7 @@ If the callback for \code{each} returns false, the cursor will stop iterating.
 
 \textbf{single document changefeeds}
 
-A single document changefeed returns only changes to the document.
+The single document changefeed only notifies the subscriber if the document changes.
 
 \begin{lstlisting}[frame=single, caption=example usage, label=refdoc]
 r.table('project').get(3).changes().run(conn, callback);
@@ -133,6 +131,7 @@ The method \code{changes()} integrates with the ReQL language.
 \code{changes()} can be used with mostly any outher command.
 
 The chaning of ReQL methods can be as complex as you wish.
+For Example changefeeds can be filter:
 
 \begin{lstlisting}[frame=single, caption=example usage, label=refdoc]
 r.table('project').changes().filter(
@@ -141,9 +140,8 @@ r.table('project').changes().filter(
 \end{lstlisting}
 
 This will be notified on every change, there the priority is lower as the previous.
+Chaining methods with changefeeds has some limitations.
 
-Chaining with changefeeds has some limitations.
-Please read the current documentation for these limitations.
 
 \textbf{handling latency}
 
