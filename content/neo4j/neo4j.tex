@@ -9,8 +9,10 @@ Graph databases use graph structure to order data in the database. There is more
 The connection between the nodes are the relations of the data. In the example picture below \cite[para. 1]{Rouse.2016}, you can see how graph databases work with the nodes and their relations. For example you can see the married couple Julie and Bob.
 
 \begin{figure}[H]
-	\includegraphics[width=\linewidth,keepaspectratio]{images/neo4j/IntroExampleGraph.JPG}
-	\caption{ExampleGraph}
+	\begin{center}
+		\includegraphics[scale=0.8,keepaspectratio]{images/neo4j/IntroExampleGraph.JPG}
+		\caption{ExampleGraph}
+	\end{center}
 \end{figure}
 
 You can also build property graphs, which you can use for routing. For example, you can find the shortest way from one city to another. The special thing about property graphs is, that attributes can be added to the nodes and edges. So you can store further information in your graph \cite[p.3]{RodriguezNeubauer.2010}.
@@ -44,8 +46,10 @@ With this properties we get the ability to store data and in connection with the
 \cite["Nodes", para. 3]{NeoTechnologyInc.2017c} \cite[p. 80]{Gupta.2015} \cite[slide 20-21]{Hunger.2013}
 
 \begin{figure}[H]
-	\includegraphics[width=\linewidth,keepaspectratio]{images/neo4j/data-structure/single-node.png}
-	\caption{Single Book Node}
+	\begin{center}
+		\includegraphics[keepaspectratio]{images/neo4j/data-structure/single-node.png}
+		\caption{Single Book Node}
+	\end{center}
 \end{figure}
 
 To structure the data, every node can be labeled. This labels can be interpreted as  a typing. Looking back at our library example we could create nodes labeled as “book”, “author” or “borrower”. By labeling the node we organize them in sets, like the MongoDB collections or SQL tables.
@@ -54,8 +58,10 @@ At this point we have nodes with properties organized in sets by their labels, b
 \cite["Labels", para. 2]{NeoTechnologyInc.2017c} \cite[slide 26-27]{Hunger.2013}
 
 \begin{figure}[H]
-	\includegraphics[width=\linewidth,keepaspectratio]{images/neo4j/data-structure/labeled-nodes.png}
-	\caption{Labeled Node Sets}
+	\begin{center}
+			\includegraphics[keepaspectratio]{images/neo4j/data-structure/labeled-nodes.png}
+			\caption{Labeled Node Sets}
+	\end{center}
 \end{figure}
 
 The relationships in Neo4j are quite similar to the nodes. They are also able to take properties in form of JSON objects and has labels to define their type or in this case better to say their function. In the library example a relationship between book and borrower could be labeled as “borrowed” and contains properties like “borrowDate”, “returnDate” or maybe “rating”. Here we should also have a look at a good structure, so it would be better to extract the rating and put it in another relationship like “read”.
@@ -154,8 +160,10 @@ RETURN you
 \textbf{CREATE} creates nodes with labels and properties.
 
 \begin{figure}[H]
-	\includegraphics[keepaspectratio]{images/neo4j/you.png}
-	\caption{graph you}
+	\begin{center}
+		\includegraphics[keepaspectratio]{images/neo4j/you.png}
+		\caption{graph you}
+	\end{center}
 \end{figure}
 
 \begin{lstlisting}[frame=single, caption=Create Relations, label=gcrl]
@@ -171,8 +179,10 @@ RETURN you, yourFriends
 \end{lstlisting}
 
 \begin{figure}[H]
-	\includegraphics[width=\linewidth,keepaspectratio]{images/neo4j/friends.png}
-	\caption{graph friends}
+	\begin{center}
+		\includegraphics[keepaspectratio]{images/neo4j/friends.png}
+		\caption{graph friends}
+	\end{center}
 \end{figure}
 
 \section{Comparison with other Database Systems}
