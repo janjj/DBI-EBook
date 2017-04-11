@@ -1,3 +1,5 @@
 - neo4j
-  - es werden lediglich die bilder benötigt
-  - quellen liegen in bibliographie.bib im neo4j ordner
+  - noch zu korrigieren:
+    - (?, ?) Quellen
+    - Die Namen der Quellen mit Curles umklammern, wenn es kein Vor+Nachname ist
+    - Bild "you.png" ist zu groß?
