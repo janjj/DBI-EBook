@@ -20,6 +20,7 @@
 \usepackage[table,xcdraw]{xcolor}
 
 \begin{document}
+
 	% Deckblatt
 	\begin{spacing}{1}
 		\input{ads/deckblatt}
@@ -27,6 +28,7 @@
 	\newpage
 	\pagestyle{plain}	
 
+  \pagenumbering{roman}
 	% Inhaltsverzeichnis
 	\begin{spacing}{1.1}
 		\begingroup
@@ -37,6 +39,8 @@
 	\end{spacing}
 	\newpage
   \listoffigures
+  \newpage
+  \lstlistoflistings
   \newpage
 	\pagenumbering{arabic}
 	
