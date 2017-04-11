@@ -18,7 +18,7 @@ They can only be 64 MB in size or smaller.
 The ordering in RethinkDB is byte-wise.
 The functions orderBy and between uses the byte representaiton of the carater.
 This has the result that RethinkDB dose not normalize identical characters with multiple codepoints.
-For example the character "é" has the UTF-8 representation \code{\\u0065\\u0301} and \code{\\u00e9}, the will be grouped separately.
+For example the character "é" has the UTF-8 representation \code{\textbackslash{}u0065\textbackslash{}u0301} and \code{\textbackslash{}u00e9}, the will be grouped separately.
 
 The usage of the cli option \code{--direct-io} is restricted to supporting file systems only.
 Typically encrypted and compressed file systems will not support this option.
@@ -90,6 +90,7 @@ With Streams you can read tremendous long lists of Data, without holding everyth
 Changefeeds are the main part of RethinkDB's real-time functionality.
 Almost all queries can be used as a changefeed.
 With a Changefeed you recive any changes on your query.
+\cite{RethinkChangefeeds}
 
 \begin{lstlisting}[frame=single, caption=example usage, label=refdoc]
 r.table('project').changes().run(conn, (err, cursor) => {
