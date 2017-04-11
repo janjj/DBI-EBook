@@ -1,14 +1,14 @@
 \section{Introduction to document based databases}
 A possibility to realise NoSQL databases are document based databases. The structure of document based databases is like the structure of key-value databases. The big difference are the values which can be reached of the keys. At document based databases the value is a document. The document are collections of data and they exist in different structures. For example the data could be stored in XML or as a JSON object. But not every document is stored as a real document because a document is only a collection of data in the context of document based databases. \\
 This formats have different possibilities to store the data but it is possible to store more then only one value in one document. An other part about document based databases is the structure of the documents. Every document in a database can have another structure. 
-So it is possible to have a document which looks like the example in figure \ref{example1}.
-\begin{mylisting}{\label{example1} Example of an document}
+So it is possible to have a document which looks like the following example:
+\begin{lstlisting}[frame=single, caption=Example]
 {"id":1,"age":25,"street":"examplestreet"}
-\end{mylisting}
-And another document which looks like the example in figure \ref{example2}. 
-\begin{mylisting}{\label{example2} Example of an other document}
+\end{lstlisting}
+And another document which looks like the following example: 
+\begin{lstlisting}[Example of an other document]
 {"id":2,"user":"abc","country":"Germany"}
-\end{mylisting}
+\end{lstlisting}
 %
 But both can be stored in the same database also if they have not the same structure. 
 The possibility of using JSON or XML as format gives this database a advantage when using it with some web applications. At web applications data are often stored in this formats and so it is a good possibility to save the data the same way in the database \parencite{DocDBIntro1,DocDBIntro2,DocDBIntro3}.
