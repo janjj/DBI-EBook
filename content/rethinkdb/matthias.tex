@@ -1,0 +1,155 @@
+\section{Limits}
+
+As every existing technique RethinkDB, too, has restictions. 
+These can be hard or soft limitations depending on their context.
+\cite{RethinkLimits}
+
+It is not possible to create more than 64 Shards in RethinkDB.
+The number of databases are not limited by anything than diskspace and RAM as is the number of tables.
+The recommended size limit for a single Document is 16MB and should be respected due to potential perforance issues.
+Also do Arrays in a RethinkDB Server have a limited length.
+This length can be configured per query and by default is at 100.000 elements.
+Primary keys are limited to 127 characters.
+But secondary keys aren't hard limited by those 127 characters, if they exceeds their limit, RethinkDB will use linear search for the following characters.
+
+JSON queries are hard limited as well.
+They can only be 64 MB in size or smaller.
+
+The ordering in RethinkDB is byte-wise.
+The functions orderBy and between uses the byte representaiton of the carater.
+This has the result that RethinkDB dose not normalize identical characters with multiple codepoints.
+For example the character "é" has the UTF-8 representation \code{\textbackslash{}u0065\textbackslash{}u0301} and \code{\textbackslash{}u00e9}, the will be grouped separately.
+
+The usage of the cli option \code{--direct-io} is restricted to supporting file systems only.
+Typically encrypted and compressed file systems will not support this option.
+
+Numbers are double precision IEEE 754 floating point.
+Integers are stored precisely from -2\textsuperscript{53} to 2\textsuperscript{53}, outside that range they will be rounded.
+
+\section{Data Types}
+
+RetinkDB has all the basic Data types. 
+Number, string, boolean, object, array and the \code{null} value. 
+Additionaly RethinkDB stores specific data types like tables, streams, selections, binary objects, time objects, geometry data types, and grouped data.
+\cite{RethinkDataTypes}
+
+\textbf{Numbers} can bee Integer or Floatingpoint values. 
+They will be stored with 64-bit percision.
+\code{NaN} or Infinit can not be stored.
+
+\textbf{String} are stored with UTF-8 encoding.
+
+\textbf{Booleans} can be \code{true} or \code{false}
+
+\textbf{Null} is a special value.
+It is not the number zero or an empty string.
+It symbolizes the absence of any other value.
+
+\textbf{Objects} are key-value pairs.
+Any valid JSON object is a valid RethinkDB object.
+\begin{lstlisting}[frame=single, caption=example Object, label=refdoc]
+{
+	"key"  : "valueString",
+	"key2" : false,
+}
+\end{lstlisting}
+The keys can only be strings, but the values can be any data type.
+A RethinkDB Document is a object.
+
+\textbf{Arrays} are lists of values.
+Arrays can be empty.
+It is not enforced to use only on type of values in an Array.
+But it is highly recommended.
+\begin{lstlisting}[frame=single, caption=example Arrays, label=refdoc]
+[
+	"valueString",
+	false,
+]
+[]
+\end{lstlisting}
+The values of an Array can be any data type.
+If you use arrays for many values, more than 100.000 you should notice that arrays are fully loaded into Server RAM before being send to the client.
+
+Specific Data types
+
+\textbf{Databases} are returned after a \code{db} function call.
+
+\textbf{Tables} are returned after a \code{getAll} function call.
+Their behavior is similar to selections.
+
+\textbf{Selections} are the result of \code{filter} ot \code{get} function calls.
+Selections comes in three variants \code{Selection<Object>}, \code{Selection<Array>} and \code{Selection<Stream>}.
+
+\textbf{Streams} are like arrays, lists.
+Streams are not writable and are lazy, they give you the next dataset if the current has been processed.
+With Streams you can read tremendous long lists of Data, without holding everything in Memory.
+
+
+\section{Changefeeds}
+
+Changefeeds are the main part of RethinkDB's real-time functionality.
+Almost all queries can be used as a changefeed.
+With a Changefeed you recive any changes on your query.
+\cite{RethinkChangefeeds}
+
+\begin{lstlisting}[frame=single, caption=example usage, label=refdoc]
+r.table('project').changes().run(conn, (err, cursor) => {
+	cursor.each((err, row) => {
+		if(err) throw err;
+		processRow(row);
+	})
+});
+\end{lstlisting}
+
+The \code{changes()} method returns a cursor.
+The \code{each()} method of that cursor object iterates over each change.
+If the underlaying data of the query changes the callback of \code{each()} will be called.
+For example a new project will be added \code{{id:3, name: "awesome Project", priority:1}} into the project table.
+The \code{each()} callback will be called with the changes of the table.
+
+\begin{lstlisting}[frame=single, caption=example usage, label=refdoc]
+{
+	old_val: null,
+	new_val: {id:3, name: 'awesome Project', priority:1}
+}
+\end{lstlisting}
+
+If the callback for \code{each} returns false, the cursor will stop iterating.
+
+\textbf{single document changefeeds}
+
+The single document changefeed only notifies the subscriber if the document changes.
+
+\begin{lstlisting}[frame=single, caption=example usage, label=refdoc]
+r.table('project').get(3).changes().run(conn, callback);
+\end{lstlisting}
+
+This would listen for changes of the project with id 3.
+
+\textbf{Filtering Changefeeds}
+
+The method \code{changes()} integrates with the ReQL language.
+\code{changes()} can be used with mostly any outher command.
+
+The chaning of ReQL methods can be as complex as you wish.
+For Example changefeeds can be filter:
+
+\begin{lstlisting}[frame=single, caption=example usage, label=refdoc]
+r.table('project').changes().filter(
+    r.row('new_val')('priority').lt(r.row('old_val')('priority'))
+)('new_val').run(conn, callback)
+\end{lstlisting}
+
+This will be notified on every change, there the priority is lower as the previous.
+Chaining methods with changefeeds has some limitations.
+
+
+\textbf{handling latency}
+
+With some latency on the client side, it is possible that there will be mutliple writes into a table, before the clinet gets all changefeed events.
+By default a changefeed subscriber will only get one change object.
+If this is not the desired procedure the option \code{squash: false} should be used on the \code{changes()} method.
+With this the change object will be send for every change.
+
+Changefeeds do not have a delivery guarantee.
+

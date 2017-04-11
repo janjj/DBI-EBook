@@ -1,0 +1,151 @@
+\section{History}
+Apache Cassandra has been developed by Facebook to solve the so called "inbox search problem" (Finley, 2014, paragraph "The Birth of Cassandra"). Its main use was to query huge amounts of messages efficiently. In 2008 Facebook open-sourced its Cassandra project and replaced it with HBase in 2010. Because of its unique decentralized manner, Cassandra was interesting for a lot of corporations. However, there wasn't a real community around that could provide any support, which made it impossible for companies to use Cassandra in production. A company called DataStax realized the potential of this column-oriented database and started to provide individual enterprise support. This action saved Apache Cassandra from becoming insignificant in the space of NoSQL databases and paved a bright future. Today, Cassandra is the second most popular and the third fastest growing NoSQL database \cite{history}.
+
+\clearpage
+\section{Architectural Basics}
+Apache Cassandra enables users all over the world and across several industries to run their applications with minimal downtime and high scalability. The following chapters outline the architecture of Cassandra and portray the advantages and downsides of Cassandra's architectural approach.
+
+\subsection{Distributed Architecture}
+Apache Cassandra is a decentralized database. The database can be distributed across several network nodes. A node is usually a data center with several server racks. \\ 
+In contrast to most other distributed databases, Cassandra's architecture doesn't need a master server. All nodes running the database are identical. This design has several advantages. First, there is no single point of failure. Cassandra replicates the keyspaces automatically so no data gets lost in case one node stops working. This fault-tolerant approach makes Cassandra well suited for most business critical applications \cite{architectureOverview} \cite{introCassandra}. \\
+Furthermore, all nodes can access the whole database which distributes the payload on the network. This architecture is highly scalable. Additional hardware can be added to the network as one or more additional nodes, whenever more computing power or more storage is needed \cite{introCassandra}.
+
+\subsection{Data Replication}
+The data stored within a distributed database is usually replicated within the network. This means every data center stores several replicas of the data and these replicas are usually stored on different racks within the data center. Therefore, administrators can define a replication strategy. There are two strategies: The simple strategy and the network topology strategy. In the simple strategy all nodes are treated equally. That means, a previously defined number of replicas are stored on each node and each node stores the same data. In the network topology strategy the number of replicas can be set for each data center individually. The number of replicas shouldn't be greater than the number of racks in the data center \cite{replication}. \\
+The simple strategy makes it hard to add a new data center to the network, because a new node must initially load all the data plus several replicas. This costs a lot of computing power and puts a high payload on the network. The network topology strategy makes it easier to add new nodes to the network, because an administrator could set a lower replication number first in order to add the node quickly to the network \cite{replication} \cite{repApache}.
+
+\subsection{CAP Theorem}
+NoSQL databases are commonly classified using the CAP theorem. This theorem states that a distributed database can only provide two of the three characteristics consistency, availability and partition tolerance (Trelle, 2011, paragraph "Das CAP-Theorem"). A database is consistent when the same query always returns the same value. Cassandra is only eventually consistent. Especially when time series data is inserted into the database with high velocity, queries might not always return the most recent data. This is a trade off to provide availability and partition tolerance \cite{architectureOverview}. Cassandra is highly available. Since all network nodes are equal, each of them can process user requests and query the entire database. The partition tolerance is also given by Cassandra's distributed architecture. Moreover, the configurable replication increases the partition tolerance. So even if a node stops communication or leaves the network, all the stored data can still be accessed by the other nodes \cite{learningCassandra} \cite{realTimeAnal}. \\
+By default Cassandra is classified as AP. However, it is possible to configure Cassandra to increase consistency. But this comes with the trade off of decreased availability or partition tolerance \cite{learningCassandra}.
+
+\subsection{Keyspaces}
+In Cassandra, a keyspace is an object, that holds together all column families of a design. It resembles the schema concept in relational database management systems. Normally, there is one keyspace per application \cite{keyspaceWiki}. 
+
+\subsection{Column Families}
+One keyspace normally holds many column families, which are comparable with tables in relational databases. These are always tuples that consist of key-value pairs, where the key is mapped to a value that is a set of columns. That means each key-value pair would be one row in a relational database. \\
+There are two types of column families: standard column families and super column families. The standard column family consists only of columns or to be more precise of a unique row key and a number of columns. The super column families are a bit different. Compared to relational databases, a super column family would be something like a view, a number of tables or also a map of columns. But as super columns are not longer favored and deprecated, it's not meaningful to get deeper in it in the scope of this work \cite{columnFamWiki}.
+
+\subsection{Advantages}
+Apache Cassandra can process write operations very fast, because datasets are stored in-memory first and get transformed and permanently saved in read optimized files later. The decentralized manner makes Cassandra fault-tolerant since the databases are replicated across several data centers. It is also easy to add new physical data centers to the network, which makes Cassandra highly scalable. With the configurable replication users can choose whether they want to use less storage or higher fault-tolerance \cite{disadvantages}.
+
+\subsection{Disadvantages}
+The biggest disadvantage of Apache Cassandra is its eventual consistency. As most NoSQL databases, Cassandra doesn't support the ACID property. ACID support would contradict the fast write speed \cite{disadvantages}.
+
+\clearpage
+\section{Use Cases}
+In 2014 DataStax analyzed what their customers use Cassandra for. With DataStax being the main supplier for corporate Cassandra support, the outcome of that study can be depicted as representative for corporate usage. However, there are a lot of small projects using Cassandra that are hard to record. Most of the use cases DataStax found fit in one of the following categories \cite{useCases}.
+
+\subsection{Product Catalogs}
+Usually catalogs contain detailed information about all the products a company offers. These products can be physical goods offered by an e-commerce shop as well as digital goods like songs and movies. Cassandra is well shaped for catalogs and playlists, which are also listings of digital goods plus additional information about them, due to the high availability Cassandra provides. This high availability is achieved since the data stored in the database can be accessed by every node within the network. That means the load on the network generated by many user requests gets distributed across the database nodes. Furthermore, Cassandra is highly scalable which is important for companies within e-commerce and similar services \cite{useCases} \cite{useCases2}. Popular users of Cassandra for this purpose are Netflix, AOL and Spotify \cite{useCases}.
+
+\subsection{Recommendations}
+In order to personalize the customer experience, many e-commerce platforms analyze their user's behavior and recommend the products they most likely will want to have. But first, these services need to gather a lot of data about their users and store it fast. Cassandra's capability of processing heavy read and write operations supports them \cite{useCases} \cite{useCases2}.
+
+\subsection{Internet of Things}
+Nowadays, several devices like sensors capture a lot of data and upload it to databases where these data will be analyzed. "[T]he internet of things needs a \grq database of things\grq " \cite{useCases}. Cassandra can handle such high velocities of time series data, because the input data is first stored in-memory. Later, the data becomes transformed into read optimized files and stored permanently. Moreover, analytics algorithms can run on top of Cassandra even while more data is inserted into the database. This enables fast real-time analytics \cite{useCases}. Common fields of such analytics are stock markets and connected and self-driving cars \cite{useCases} \cite{useCases2}.
+
+\subsection{Messaging}
+Initially, Cassandra has been developed to store huge amounts messages and search through them. Facebook distinguished between two scenarios when a user was searching his or her inbox. Either he or she inserts a name into the search bar and wants all the conversations with that person returned or the input is a term that can appear in several conversations with different people. The first is easy to manage since Cassandra manages a key-value store. The key would be the conversation partner and the values are all the messages sent to and received from him or her. The latter scenario describes a column search which all column-oriented databases can handle efficiently \cite{useCases} \cite{useCases2}.
+Furthermore, in messaging availability is way more important than consistency. Users want to see their messages instantly and usually won't recognize a slight delay when receiving messages \cite{useCases}.
+
+\clearpage
+\section{Setting Up Cassandra}
+This section covers a high-level instruction on how to install, set up and work with Apache Cassandra.
+
+\subsection{Installation}
+The installation of Cassandra is relative easy. First, the Oracle JRE package needs to be added to the system and installed afterwards. After that, the repository source needs to be added to the package manager.
+Also, to avoid signature warnings, three public keys from the Apache Software Foundation need to be added with the following commands:
+
+  \begin{lstlisting}
+gpg --keyserver pgp.mit.edu --recv-keys F758CE318D77295D
+gpg --export --armor F758CE318D77295D | sudo apt-key add -
+
+gpg --keyserver pgp.mit.edu --recv-keys 2B5C1B00
+gpg --export --armor 2B5C1B00 | sudo apt-key add -
+
+gpg --keyserver pgp.mit.edu --recv-keys 0353B12C
+gpg --export --armor 0353B12C | sudo apt-key add -
+  \end{lstlisting}
+\textit{sudo apt-get install cassandra} finishes the installation and \textit{sudo service cassandra status} shows the installation status. I figured out, that on Ubuntu 16.04 there are some issues while installing, there is some additional software required, that is already pre-installed on Ubuntu 14.04, where it worked fine.
+
+\subsection{Usage}
+First, with \textit{sudo nodetool status} it can be checked if the cluster is up and running. If everything is fine there, the connection to cassandra is established by  typing cqlsh into the command line. Once connected, all the commands mentioned in the section about CQL work. The usage of Cassandra is easy and self explaining, there is also a documentation page, that is installed with Cassandra and shows several example commands.
+
+\subsection{CQL}
+The Cassandra Query Language (CQL) is a language that was developed especially for the use in Cassandra. The common usage is via the CQL shell (cqlsh). With the cqlsh it is possible to create keyspaces and tables, as well as entering some data, update it or delete it \cite{cqlIntro}. How to do something with the CQL will be explained in the next section. \\
+To get started with using Cassandra, the first is to create a keyspace. This is done by the following command:
+ \begin{lstlisting}
+   CREATE KEYSPACE DHBW
+           WITH replication = 
+           {
+           	'class': 'SimpleStrategy', 
+                'replication_factor' : 3
+           };
+ \end{lstlisting}
+With this command, a keyspace called DHBW is created with the replication class SimpleStrategy and a replication factor of 3. \\
+The replication class knows two strategies: SimpleStrategy and NetworkTopologyStrategy. \\
+After we created the keyspace, it can be used to switch on the keyspace to work with it. \\This happens with the command
+ \begin{lstlisting}
+use DHBW;
+ \end{lstlisting}
+ 
+Working on this keyspace a table or a column family can be created in it:
+  \begin{lstlisting}
+CREATE TABLE students (
+    mn int,
+    firstName text,
+    lastName text,
+    averageScore double,
+    PRIMARY KEY (mn)
+);
+ \end{lstlisting}
+The created table is called students and has four keys, which are mn, firstName, lastName and averageScore. There are different data types to use, in this case integer, text and a double (float) value. Also, mn gets defined as a primary key.
+\\
+After the table was created, it is possible to enter some data. With the following command two sets of data are entered:
+  \begin{lstlisting}
+INSERT INTO students(mn, firstName, lastName, averageScore) 
+       VALUES (0, 'max', 'mustermann', 1.0);
+INSERT INTO students(mn, firstName, lastName, averageScore) 
+       VALUES (1, 'john', 'doe', 4.0);
+ \end{lstlisting}
+Now there are two students with different values.
+ \\\\
+The thing missing now would be to select some data from the created table. This is, similar to SQL, done with this command:
+  \begin{lstlisting}
+
+SELECT * FROM students;
+
+ \end{lstlisting}
+With that command the two students John Doe and Max Mustermann that have just been entered would be returned with all their data.
+
+To test some more commands, some sample data can be retrieved by installing the Cassandra Dataset Manager, which allows to easily import some sample data, in this case from movielens.
+  \begin{lstlisting}
+
+use movielens_small;
+
+select * from ratings_by_user;
+select * from ratings_by_user where rating=3 
+        ALLOW FILTERING;
+select user_id from ratings_by_user where rating=3
+        ALLOW FILTERING;
+ \end{lstlisting}
+ 
+With this code, the keyspace is switched to the movielens keyspace. Then, all ratings are selected by user.  \\
+The second command gets all ratings, where the rating is equal to three. The ALLOW FILTERING makes this query possible. Otherwise Cassandra would throw an error saying \textit{Bad Request: Cannot execute this query as it might involve data filtering and thus may have unpredictable performance. If you want to execute this query despite the performance unpredictability, use ALLOW FILTERING.}. So when using allow filtering, Cassandra executes the query, no matter if this might take very much time (\cite{cassAllowFiltering}). \\
+In the third query, demonstrated the strength of Cassandra. In the query, only the user id from ratings by user is selected where the rating is equal to three. In a relational database each line would have to be read to filter for the rating three, then every line with it and get the user id from that line would be returned. However, with Cassandra the only two lines that matter are the user id and the rating, the other values are not checked at all. That's the huge benefit of column oriented databases like Cassandra.
+
+\clearpage
+\section{Lessons learned}
+\subsection{Getting Started}
+The most obvious starting point to get in touch with Cassandra is the Cassandra web page created by the Apache Software Foundation. Unfortunately, this page is declared as work in progress meaning a lot of information is not included yet. DataStax maintains a DataStax Academy platform where they provide some articles on Cassandra as well as webinars and trainings. Not all of that content is for free, but enough to get an overview about what Cassandra is, how it works and how to use it. Furthermore, since a wide community is working with Cassandra, forums like StackOverflow are helpful, too. The world wide web contains a ton of articles and posts about Cassandra. However, they usually depict only a few topics. In order to get a more complete overview of Cassandra, it is helpful to read a book. Authors generally start at a lower level, depending on the addressed audience, and go through a variety of topics step by step. The only downside of books is that it takes a while to write, review and publish them so they can not cover the most recent developments. But in contrast to some pseudonym writing a blog post, the contents of books are more reliable since they are reviewed.
+
+\subsection{Setup}
+The installation process of Cassandra didn't take long. There are several tutorials that are quite detailed and step by step, so one can just follow the tutorial and go through the steps. The problem to install it under Ubuntu 16.06 was also hit, but on Ubuntu 14.04, everything worked fine.Most probably, the installation on Ubuntu 16.04 is possible as well. There are several blog posts about these problems, as well as some questions about it in forum threads. \\
+Moreover, there is the DataStax Academy platform, mentioned before. With an account one can also submit a support ticket for DataStax, so this is also a good channel to get help if any specific problem with Cassandra appears.
+
+\clearpage
+\section{Conclusion}
+The main advantages of Apache Cassandra are its availability, fault-tolerance and scalability. Therefore, it is perfectly suited to run in the back end of business critical applications where consistency and ACID are not required. \\
+To get these advantages, users need several servers in different data centers, which makes Cassandra less interesting to private users. Furthermore, the open-source documentation is poor. Apache's web page for Cassandra is labeled as work in progress. Several important parts of the documentation haven't been written yet \cite{apacheDocu}. To sum that up, Cassandra is well suited for corporate use, especially thanks to the DataStax support, and less for private usage. \\
+In the future Cassandra will probably have an important role within the internet of things and real-time analytics. The developer's focus is to suit Cassandra in the way that it runs the database that drives applications but not the analytics itself. It's easy to gather huge amounts of data and store them fast. However, Cassandra is inter-operable with most new technologies like Apache Spark. \\
+All in all, Cassandra is a nice fit for companies that need to manage high amounts of data with a high input velocity. Without a single point of failure, Cassandra's availability is better then most other NoSQL databases.
