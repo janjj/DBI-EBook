@@ -16,7 +16,7 @@ The database members have reading access to all documents but they have only wri
 \end{enumerate}
 \textbf{Creating server administrator}\\
 There are two technical capabilities to create a new server administrator. The first possibility is to change the \textit{local.ini} file \\ \cite{ApacheSoftwareFoundation.2013.AdminAccount}:
-\begin{lstlisting}{frame=single, caption=Example Create new Server Administrator with local.in File \protect\cite{ApacheSoftwareFoundation.2013.AdminAccount}}
+\begin{lstlisting}[frame=single, caption=Example Create new Server Administrator with local.in File \protect\cite{ApacheSoftwareFoundation.2013.AdminAccount}]
 [admins]
 username = password
 \end{lstlisting}
@@ -28,12 +28,12 @@ Currently every admin has the possibility to read these plain-text password. Thi
 \item "Prefixes the result with -hashed- and appends textbf{salt}" \\ \cite{Anderson.2010.Buch}
 \end{enumerate}
 After restart CouchDB the \textit{local.ini} looks like:
-\begin{lstlisting}{frame=single, caption=Example Create new Server Administrator with local.ini File \protect\cite{ApacheSoftwareFoundation.2013.AdminAccount}}
+\begin{lstlisting}[frame=single, caption=Example Create new Server Administrator with local.ini File \protect\cite{ApacheSoftwareFoundation.2013.AdminAccount}]
 [admins]
 username = -hashed-207b1b4f8434dc60429672c0c2ba3aae61568d6c,96406178a0718239acb72cb4e8f2e66e
 \end{lstlisting}
 But it also possible to create a server administrator with the provided API (for further information please see chapter 1.4.3 "The Database Part"): \\ \cite{Anderson.2010.Buch}
-\begin{lstlisting}{frame=single, caption=Example Create new Server Administrator with REST API \protect\cite{Anderson.2010.Buch}}
+\begin{lstlisting}[frame=single, caption=Example Create new Server Administrator with REST API \protect\cite{Anderson.2010.Buch}]
 curl -X PUT \$HOST/\_config/admins/username -d '"password"'
 \end{lstlisting} 
 
@@ -43,7 +43,7 @@ Until now it is only possible to create a new databases after you entered the ad
 \\
 To create a database administrator or a simple database member it is necessary to change the security object of the selected database. These object is located under \textit{\slash db\_name\slash\_security} \\ \cite{ApacheSoftwareFoundation.2013.SecurityFeatures}.
 The data in these object is in JSON format \cite{ApacheSoftwareFoundation.2013.SecurityFeatures}:
-\begin{lstlisting}{frame=single, caption=Example Create new Database Members and Database Administrator \protect\cite{ApacheSoftwareFoundation.2013.SecurityFeatures}}
+\begin{lstlisting}[frame=single, caption=Example Create new Database Members and Database Administrator \protect\cite{ApacheSoftwareFoundation.2013.SecurityFeatures}]
 {
   "admins" : {
      "names" : ["ines", "tobi"],
@@ -58,7 +58,7 @@ The data in these object is in JSON format \cite{ApacheSoftwareFoundation.2013.S
 
 \textbf{If a database have no database users every user can change regular documents!}
 CouchDB stores data of the single users in an user authentication database named (\_\textbackslash users). Every user have a separate document. In this document it is possible to save the properties of every user for example id, name or user roles.The property "type" can only substituted with the key "user". An example user definition in such a document is shown in the following graphic: \cite{ApacheSoftwareFoundation.2013.SecurityFeatures}:
-\begin{lstlisting}{frame=single, caption=Example User Definition \protect\cite{ApacheSoftwareFoundation.2013.SecurityFeatures}}
+\begin{lstlisting}[frame=single, caption=Example User Definition \protect\cite{ApacheSoftwareFoundation.2013.SecurityFeatures}]
 {
  "\_id":"org.couchdb.user:ines",
  "type":"user",
@@ -76,7 +76,7 @@ CouchDB offers the possibility to use Proxy or implement particular authenticati
 \subsection{Validation Function}
 To be able to guarantee the consistency of the data in a database system, it is helpful to provide rules directives. Afterwards every document must fulfill these requirements. For example, it is possible to define directives which ensures that the field "name" may not bee empty. If this field will be empty an error message will be shown. \cite{Scheliga.2010}.
 
-\begin{lstlisting}{frame=single, caption=Example Validation Function \protect\cite{Scheliga.2010}}
+\begin{lstlisting}[frame=single, caption=Example Validation Function \protect\cite{Scheliga.2010}]
 {
     \_id: "\_design/designdoc",
     validate\_doc\_update: "function(newDoc, oldDoc, userCtx) {
@@ -84,7 +84,7 @@ To be able to guarantee the consistency of the data in a database system, it is 
     throw {forbidden: 'Document must have a name.'};
     }}"
 }
-\end{lstlistings}
+\end{lstlisting}
 
 The deposited validation directives launch automatically if a new document created or an existing document changed. Every validation directives can include an arbitrarily number of these rules. However every design document can only deposit one validation function \cite{Scheliga.2010}.
 

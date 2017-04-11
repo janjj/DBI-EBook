@@ -43,7 +43,7 @@ In addition, the build-in administration interface Futon that is accessible via 
 %%%%%%%%
 %Data in CouchDB, like in many (but not all) NoSQL %databases, is stored as documents and there is no %pre-defined schema. Unlike a relational database where we %need to describe what the structure of our data is before %we insert it (a schema), and can only insert data that %matches that schema, with CouchDB you can store whatever %kind of data you want, whenever you want. This doesn’t %mean that there is no structure to a CouchDB database, it %is critically important that you add data in a way that %makes sense and will perform well for your application. %This creates a lot of flexibility for data storage, but %it also has its downsides and it can be quite hard to %learn because there is no “100percent correct” way to %store the data, and in many cases, it’s better to do %things you will probably have learned to avoid like %duplicating data.\cite{MoronyJosh}
 %%%
-\newline
+
 On the other hand, some drawbacks are worth mentionable.
 %Eventual Consistency
 CouchDB guarantees eventual consistency to be able to provide both availability and partition tolerance. In detail, this implies two write and read operations in the same time frame will cause the problem, that the update will not necessarily be see-able \cite{EminGunSirer}.
