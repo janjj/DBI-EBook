@@ -238,26 +238,3 @@ Overall Neo4j is quite unique, but has high potential in the sector of relationa
 It is useful to perform complex relational data queries and can be used for many different business cases.
 It is still the most popular graph database and some weaknesses can be handled by using Neo4j with another NoSQL database together.
 
-***
-## Reference List
-
-- Dalal, D. (2014). _Neo4j MySql MS-SQL comparison_. Retrieved April, 9, 2017, from https://de.slideshare.net/DhavalDalal/neo4j-my-sqlmssqlcomparisonfinal
-- Gupta, S. (2015). _Neo4j Essentials_. Retrieved from https://books.google.de/books?id=WJ7NBgAAQBAJ
-- Hunger, M. (2013). _Data Modeling with Neo4j_. Retrieved from the SlideShare website: https://de.slideshare.net/neo4j/data-modeling-with-neo4j
-- Hunger, M., Boyd, R. & Lyon, W. (2016). _The Definitive Guide to Graph Databases for the RDBMS Developer_. Retrieved April, 10. 2017, from http://info.neotechnology.com/rs/773-GON-065/images/Definitive-Guide-Graph-Databases-for-RDBMS-Developer.pdf
-- Neo4j Staff (2011). _Intro to Graph Databases_. Retrieved April, 9, 2017, from https://neo4j.com/blog/recap-intro-to-graph-databases-webinar-series-1/
-- Neo Technology, Inc. (2017a). _Cypher Query Language Developer Guides & Tutorials_. Retrieved April 9, 2017, from https://neo4j.com/developer/cypher
-- Neo Technology, Inc. (2017b). _For Relational Database Developers: A SQL to Cypher Guide_. Retrieved April 9, 2017, from https://neo4j.com/developer/guide-sql-to-cypher
-- Neo Technology, Inc. (2017c). _Graph Data Modeling Guidelines_. Retrieved March 29, 2017, from https://neo4j.com/developer/guide-data-modeling
-- Neo Technology, Inc. (2017d). _Graph DB vs RDBMS_. Retrieved April, 9, 2017, from https://neo4j.com/developer/graph-db-vs-rdbms/
-- Neo Technology, Inc. (2017e). _Intro to Cypher_. Retrieved March 29, 2017, from https://neo4j.com/developer/cypher-query-language
-- Neo Technology, Inc. (2017f). _Neo4j and MongoDB_. Retrieved April, 9, 2017, from https://neo4j.com/developer/mongodb/
-- Neo Technology, Inc. (2017g). _Neo4j Licensing_. Retrieved April 9, 2017, from https://neo4j.com/licensing/
-- Neo Technology, Inc. (2017h). _Neo4j: The World’s Leading Graph Database_. Retrieved April 9, 2017, from https://neo4j.com/product/
-- Mahler, D. (2014). _Graphendatenbank: Flexible Datenabfragen mit Neo4j_. Retrieved April 9, 2017, from https://www.heise.de/developer/artikel/Graphendatenbank-Flexible-Datenabfragen-mit-Neo4j-2176439.html?artikelseite=3
-- Robinson, I., Webber, J. & Eifrem, E. (2013). _Graph Databases_. Sebastopol, CA: O'Reilly Media
-- Rodriguez, M. A. & Neubauer, P. (2010). _Constructions from Dots and Lines_. Retrieved from the Cornell University website: https://arxiv.org/abs/1006.2361
-- Rouse, M. (2016). _DEFINITION: graph database_. Retrieved April 5, 2017, from http://whatis.techtarget.com/definition/graph-database
-- Solid IT GmbH (2017). _DB-Engines Ranking von Graph DBMS_. Retrieved April 8, 2017, from https://db-engines.com/de/ranking/graph+dbms
-- Webber, J. & Robinson, I. (2015). _Graph Databases_. O'Reilly
-- W3C (2014). _Resource Description Framework (RDF)_. Retrieved April 9, 2017, from https://www.w3.org/RDF/
