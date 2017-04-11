@@ -1,0 +1,44 @@
+
+\section{Technology of Redis}
+\subsection{Data Types}
+Redis has a special way to save the data. In a normal database a string key is connected to a string value, but in Redis it is possible to accessed with a string key to string or other complex data structures. Redis provides several data structures like string, list, set, sorted set, hashes, Bit arrays and HyperLogLogs. \cite{RedisIntroDataTypes}
+
+\subsubsection{Key} 
+To get accessed to a value you need the key of it. Keys in Redis are binary safe. So they have a known length not determined by any special terminating characters. That mean that you can use every binary sequence like \grqq 234\grqq, \grqq John\grqq{ } or a JPEG-File.
+
+\subsubsection{String} 
+The String in Redis is the basic kind of value. It is possible to store every kind of data inside a string, because it is also binary safe like the key. The length of the string is up to 512mb. With the basic kind of data the other data types can be build. 
+
+\begin{lstlisting}[language=bash]
+  > SET testkey examplevalue
+(integer) 1 
+  > GET testkey
+examplevalue
+\end{lstlisting}
+
+\subsubsection{List}
+The data type List is just a list of strings. List has in programming languages different meanings and implementation. In this case a list is implemented like a linked list. So every string inside the list has a reference to another string. Because of the implementation of a linked list Redis has a big advantage by adding an element at head or tail. For this operation Redis needs a constant time or this can be expressed as $O(1)$. But on the other hand this brings a bad performance at scanning for an element. This means for accessing an element Redis needs to scan the entire list. Redis Lists are implemented for fast writes, for other operations other data types fit better. 
+\cite{das2015learning} 
+
+\subsubsection{Set}
+Redis Sets are a unordered collection of strings. They look like lists, but they have a different implementation. In Redis Sets are solving problems around the set theory.\cite{das2015learning} 
+
+A Set in Redis can have up to 4 billions of values, each of them is unique. So it's not possible to duplicate values inside a set. The implementation brings a constant $O(1)$ time of adding, removing or checking for existence of an element.\cite{RedisSets}
+
+\begin{lstlisting}[language=bash]
+  > SSAD testkey examplevalue
+(integer) 1
+  > SSAD testkey examplevalue2
+(integer) 1 
+  > SSAD testkey examplevalue2
+(integer) 0  
+  > SMEMBERS testkey
+ 1) "examplevalue"
+ 2) "examplevalue2"
+\end{lstlisting}
+
+\subsubsection{Sorted Set}
+A Sorted Set in Redis is very much like a Set. So the values inside the Sorted Set are unique but each of them is associated with an floating point value called the score. The elements are sorted by these score from the smallest to the greatest one. While the values are unique the score can be duplicated. If the score is equal the values get sorted lexicographically.\cite{RedisIntroDataTypes}
+
+\subsubsection{Hashes}
+Redis Hashes are a collection of key-value pairs. They are maps between attributes and values, both are strings. With Hashes it is possible to represent Objects with up to 4 billions attributes.\cite{RedisIntroDataTypes}

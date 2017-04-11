@@ -1,0 +1,20 @@
+\section {CAP Theorem}\label{CAP}
+%\subsection{Definition}
+The CAP theorem or Brewer's theorem is a model to categorize distributed systems.
+CAP stands for:
+\begin{itemize}
+	\item Consistency
+	\item Availability
+	\item Partition Tolerance
+\end{itemize}
+Consistency means that a read request always returns the most recent write or an error.
+Availability stands for a guaranteed return of a previous write, even though not necessarily the most recent one. But it never returns an error or a timeout.
+Partition Tolerance is the part which has to be fulfilled in any case. It means that if the network connection between nodes does not work, the other parts of CAP (consistency and availability) are still fulfilled.\cite{Messinger}\\
+Because of this databases are divided into CP and AP databases. They cannot be CAP databases since consistency and availability contradict each other in case of a node failure. A read transaction after such a failure will either result in an error or in the return of a former write.\cite{Greiner}
+\subsection{Redis' Positioning inside CAP}
+To position Redis in the concept of CAP is rather difficult, because Redis originally was not designed to be a distributed system. As a result Redis is considered to be CP, i.e. consistent and partition tolerant.
+Because data is written to the disc asynchronously every once in a while, data is very likely to get lost on server failure. This is why Redis is not an AP database.
+
+On the other hand, consistency is not guaranteed if Redis is implemented multi-node. It can be lost if a read operation on a slave is performed. Then the response can contain expired data and overwrite changes on the master which are complete but not yet replicated to the slaves.\cite{Jepsen}
+
+The CAP theorem only applies to distributed systems. But as Redis is usually distributed single-node and not designed to be run multi-node, it should not be placed inside the CAP.\cite{Quora}
