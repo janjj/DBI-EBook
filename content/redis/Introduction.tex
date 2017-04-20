@@ -1,0 +1,20 @@
+\chapter {Redis}
+\section {Introduction}
+\subsection {Key-Value Database}
+% INTRODUCTION FOR EBOOK: Key-value Databases are NoSQL databases. This means they do not fulfill the first normal form of relational Databases.
+The term \grqq database\grqq{ } is usually associated with SQL-Databases, tables and strict structure. Every entry in a table has the same attributes which are predefined.
+But what happens if there is another kind of data? What happens for example, if pictures or videos should be stored instead of numbers and strings?
+This is the big advantage of key-value databases. Almost any kind of data can be stored - pictures, videos, HTML, JSON, strings, numbers, and many more. Because of this ability, key-value databases have the reputation to be the most flexible NoSQL-databases.
+% different types of Key-Value Databases?
+% Explaination for RAM in Section KV or Redis?
+There are different key-value databases. The differences are
+\begin{itemize}
+	\item the way they save data (changes are firstly saved in-memory or instantly written to the disk)
+	\item the format of values
+\end{itemize}
+By the way the databases save data, also persistence and performance of the database are influenced. This, amongst others, will be looked at in section \ref{CAP}. % the section \nameref{CAP}.
+What all key-value databases have in common is that they have only one value for one key. But for example one hash with multiple fields is seen as one value.\cite{KV}
+\subsection {Redis}
+Redis is an open-source key-value database.
+What is special about Redis is the fact that all data is saved in-memory. This makes Redis the fastest Database. But it makes Redis also very vulnerable. To maintain data persistence, Redis writes changes asynchronously to the disk. On server failure like power loss, all unwritten data is lost and because of the asynchronism not recoverable.\cite{Seeger}
+These attributes will be elaborated in the following chapters.

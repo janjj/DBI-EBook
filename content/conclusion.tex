@@ -1,0 +1,21 @@
+This work contains a comparison of several popular NoSQL databases.
+The easiest way to choose a database solution on a given use case is to compare its needs to the CAP theorem.
+But not every database solution fits exactly into the CAP theorem.
+Each of them has its own capabilities, advantages and drawbacks.
+
+The strenghts of column oriented databases clearly are on the fast reading and writing operations, when only accessing one single column, because not every line has to be read completely, but only the specified column.
+Also, no null values have to be inserted, which saves a lot of space. Aditionally, column oriented databases are easily scalable and distributed and good for saving massive amounts of data.
+The weakness is about transactions, those are handled significantly slower then e.g. on relational databases.
+
+Key Value is an approach perfectly suited for uses cases where own keys are generated.
+The main difference to other NoSQL databases is that data is only accesible over the saved key.
+This aggravates the querieng of data appart from the key.
+An avantage of Key Value databases is the super flexible data model.
+Data sets could be saved without any type specification to a key.
+
+Document-based nosql databases provides multiple advantages. With a single query, they are able to access huge amout of data fast. Especially compared to SQL it offers easier implementation because it stores data schema-less and enables flexibility. Over and above, document-based databases can be customized to meet certain requirements for the cap therorem like partitioning and sharding even over multiple servers through clustering. Besides to the advantages, document-based databases do have drawbacks such as the slow attribution aggregation or slow updates. In addition, all documents are stored unsorted and are completly loaded into the ram. Data is stored denormalized which causes high memory usage.
+
+Graph databases like Neo4j take the opportunity to manage tightly related data, such as social networks or real-time recommendations. The similarity in the data structure to document based databases keeps the freedom in schema and the possibility to integrate and sync Neo4j with them to achieve the advantages of both types.
+On the downside the deep connected data disables the ability to provide partition tolerance. In addition the complexity of the data structure prevents high performance while read/write operations of non-related documents, but satisfies in querying relationships.
+
+This Paper provides an insight into popular NoSQL databases and is a good start for beginners to learn the basic concepts and principles of NoSQL databases.

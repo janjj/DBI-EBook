@@ -1,0 +1,2 @@
+\subsection{Redis Expire}
+In Redis it is possible to set a timeout for a key by using the EXPIRE command. When the time to live elapses, the key will automatically be destroyed. The timeout can be cleared by PERSIST, DEL, SET, GETSET and all *STORE commands. Every other command leaves the timeout untouched. Even if you rename a key the new key name has the same time to live. If you put in a negative time to live, the key will be deleted. It is possible to update the time to live of a key by using EXPIRE. \cite{RedisExpire}

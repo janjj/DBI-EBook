@@ -1,0 +1,26 @@
+
+\subsection{Security}
+Redis is not designed for maximum security. Any trusted client in an trusted environment can have access to the database. That\grq s why the administrator should be cautiously while the implementation, because it\grq s maybe not the best idea to connect the database directly to the internet or an untrusted environment. But Redis has thought about their lack of security and has implemented some ways to make it a bit safer against attacks. The first thing is to rename or disable operations. The second thing is to enable the authentication layer and another thing is called the protected mode.
+
+\subsubsection{Rename Commands}
+The main idea behind rename commands is that the normal commands are disabled. To work with the database the user needs to know the renamed commands. If the old command is passed trough the database it replies with an error message.  All commands can be renamed in the configuration file redis.conf with the directive rename-command. For example the command get is renamed into \glqq specialorder \grqq with rename-command GET SPECIALORDER. With this operation it is also possible to disable commands. This happens also with the rename command inside the redis.conf. The directive rename-order gets as second argument an empty string, rename-command GET SPECIALORDER. Now it is not possible to get accessed to this command. The listing shows how Redis replies to queries. \cite{RedisSicherheit}
+\begin{lstlisting}[language=bash]
+  > GET testkey
+(error) ERR unknown command 'GET'
+  > SPECIALORDER testkey
+"5"
+  > FLUSHDB
+(error) ERR unknown command 'GET'
+\end{lstlisting}
+
+\subsubsection{Authentication Layer}
+Redis has no access control implemented but it is possible to enable a tiny authentication layer in the redis.conf file. After this layer is enabled Redis will refuse by any query of an unauthenticated client. A client can authenticate itself by sending the AUTH command an the password. The password is set by the administrator in the redis.conf in plain text.\cite{RedisSecurity} By choosing a password it should be clear that redis is a very fast database so it is possible to brutforce with about 100 000 attacks per second to break it. \cite{RedisSicherheit}
+
+\subsubsection{Protected Mode}
+The protected mode should help users to protect the database from external networks. It automatically enters the special mode if and only if:
+\begin{itemize} 
+\item The default configuration is set
+\item No AUTH password is configured
+\end{itemize}
+When Redis is in protected mode it only replies to the loopback interface. Any other query gets an error message. However if the protected mode is needed the administrator can just disable the mode.\cite{RedisSecurity}
+

@@ -1,0 +1,5 @@
+- neo4j
+  - noch zu korrigieren:
+    - (?, ?) Quellen
+    - Die Namen der Quellen mit Curles umklammern, wenn es kein Vor+Nachname ist
+    - Bild "you.png" ist zu groß?

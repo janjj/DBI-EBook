@@ -3,11 +3,32 @@
 \makeglossaries
 \input{ads/glossary}
 
-\usepackage{enumitem}
 \usepackage[table,xcdraw]{xcolor}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{mdframed}
 
-\usepackage{listings}
-\usepackage{graphicx}
+%CODEDESIGN:
+%\definecolor{codeBackground}{rgb}{0.9, 0.9, 0.8}
+%\lstnewenvironment{mylisting}[1]{
+%	\lstset{
+%		basicstyle=\ttfamily\small,
+%		breaklines=true,
+%		moredelim=**[is][\bfseries]{|}{|},% bold everything in between ||
+%		moredelim=**[is][\itshape]{*}{*}  % italic everything in between **
+%	}%
+%	\mdframed[backgroundcolor=codeBackground,shadow=true,shadowsize=2pt,shadowcolor=black!30]%
+%}{%
+%\bigskip
+%\ignorespaces
+%}
+
+%%%%
+
+% custom commands
+
+\definecolor{codegray}{gray}{0.9}
+\newcommand{\code}[1]{\colorbox{codegray}{\texttt{#1}}}
 
 \begin{document}
 
@@ -16,10 +37,11 @@
 		\input{ads/deckblatt}
 	\end{spacing}
 	\newpage
-		\input{content/thanks}
+	%	\input{content/thanks}
 	\newpage
 	\pagestyle{plain}	
 
+  \pagenumbering{roman}
 	% Inhaltsverzeichnis
 	\begin{spacing}{1.1}
 		\begingroup
@@ -29,7 +51,10 @@
 		\endgroup
 	\end{spacing}
 	\newpage
-
+  \listoffigures
+  \newpage
+  \lstlistoflistings
+  \newpage
 	\pagenumbering{arabic}
 	
 	\pagestyle{headings}
@@ -45,10 +70,10 @@
 	\cleardoublepage
   \bibliographystyle{apacite}
   \bibliography{bibliographie}
-	\newpage\null\thispagestyle{plain}\newpage
-	
+	%\newpage\null\thispagestyle{plain}\newpage
+	%\newpage
 	% Glossar
-	\printglossary[style=altlist,title=\langglossar]
+	%\printglossary[style=altlist,title=\langglossar]
 	%\input{ads/glossary}
 	
 
