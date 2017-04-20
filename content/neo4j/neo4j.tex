@@ -66,7 +66,7 @@ At this point we have nodes with properties organized in sets by their labels, b
 
 The relationships in Neo4j are quite similar to the nodes. They are also able to take properties in form of JSON objects and has labels to define their type or in this case better to say their function. In the library example a relationship between book and borrower could be labeled as “borrowed” and contains properties like “borrowDate”, “returnDate” or maybe “rating”. Here we should also have a look at a good structure, so it would be better to extract the rating and put it in another relationship like “read”.
 The main and obvious difference are the two connected nodes. So every relationship needs exactly two nodes connected to it. But they do not have to be different, so it'’'s possible to point a relationship on its own origin. Naturally the node labels are irrelevant here, so relationships can be defined inside and between node sets.
-\cite["Relationships", para. 1]{NeoTechnology2017c.2017c} \cite[p. 81-82]{Gupta.2015} \cite[slide 22-25]{Hunger.2013}
+\cite["Relationships", para. 1]{NeoTechnologyInc.2017c} \cite[p. 81-82]{Gupta.2015} \cite[slide 22-25]{Hunger.2013}
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth,keepaspectratio]{images/neo4j/data-structure/node-relationships.png}
@@ -232,7 +232,7 @@ Since relationships are very important in graph databases, it's quite difficult 
 	Most NoSQL databases store sets of disconnected aggregates. This makes it difficult to use them for connected data and graphs.
 	One well-known strategy for adding relationships to such stores is to embed an aggregate'’'s identifier inside the field belonging to another aggregate — effectively introducing foreign keys.
 	But this requires joining aggregates at the application level, which quickly becomes prohibitively expensive.
-\end{quotation} \cite[p. 15]{Webber.Robinson.2015}.
+\end{quotation} \cite[p. 15]{WebberRobinson.2015}.
 
 \subsection{Integration with other Database Systems}
 This section will describe how to use Neo4j together with other database systems in a very basic way. It will not go in-depth and there will be no code examples to keep it as simple as possible.
