@@ -1,0 +1,7 @@
+# Fdb version 3
+["pdflatex"] 0 "dokumentation.tex" "output/dokumentation.pdf" "dokumentation" 0
+  "dokumentation.tex" 0 -1 0 ""
+  "output/dokumentation.aux" 1492705533 8 a94a2480d3289e625eea47cd1b285758 ""
+  (generated)
+  "output/dokumentation.pdf"
+  "output/dokumentation.log"
