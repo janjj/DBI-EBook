@@ -1,0 +1,38 @@
+\select@language {english}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces structure of a HBase table\relax }}{7}{figure.caption.6}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Riak Logo \cite {Basho.06.04.2017}}}{41}{figure.caption.19}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Riak Clustering\relax }}{42}{figure.caption.22}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Overview of different versions of Riak KV \cite {Basho.01.04.2017}}}{42}{figure.caption.23}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Documents and collections\relax }}{66}{figure.caption.24}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Write process with write concerns\relax }}{76}{figure.caption.38}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces MongoDB Architecture Example\relax }}{77}{figure.caption.39}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Insert MongoDB vs MariaDB\relax }}{80}{figure.caption.40}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Deletion performance\relax }}{81}{figure.caption.41}
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Time for read operations in milliseconds\relax }}{82}{figure.caption.42}
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Time for write operation in milliseconds\relax }}{82}{figure.caption.43}
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Time for delete operation in milliseconds\relax }}{82}{figure.caption.44}
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Design pattern for integrating MongoDB with Data Lake~\cite {MongoDB2016}\relax }}{84}{figure.caption.45}
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Write process with write concerns\relax }}{85}{figure.caption.46}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Position of RethinkDB in the CAP-Theorem \cite {rdbcaptheorem}\relax }}{88}{figure.caption.49}
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Performance Report of RethinkDB \cite {performanceReport}\relax }}{91}{figure.caption.50}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {9.1}{\ignorespaces ExampleGraph\relax }}{98}{figure.caption.51}
+\contentsline {figure}{\numberline {9.2}{\ignorespaces Single Book Node\relax }}{100}{figure.caption.52}
+\contentsline {figure}{\numberline {9.3}{\ignorespaces Labeled Node Sets\relax }}{100}{figure.caption.53}
+\contentsline {figure}{\numberline {9.4}{\ignorespaces Related Nodes\relax }}{101}{figure.caption.54}
+\contentsline {figure}{\numberline {9.5}{\ignorespaces Sample Graph\relax }}{102}{figure.caption.55}
+\contentsline {figure}{\numberline {9.6}{\ignorespaces node ascii art\relax }}{103}{figure.caption.58}
+\contentsline {figure}{\numberline {9.7}{\ignorespaces graph you\relax }}{104}{figure.caption.60}
+\contentsline {figure}{\numberline {9.8}{\ignorespaces graph friends\relax }}{105}{figure.caption.61}
+\contentsline {figure}{\numberline {9.9}{\ignorespaces SQL data model\relax }}{106}{figure.caption.62}
+\contentsline {figure}{\numberline {9.10}{\ignorespaces Neo4j data model\relax }}{106}{figure.caption.63}
+\contentsline {figure}{\numberline {9.11}{\ignorespaces neo4j sql comparison\relax }}{109}{figure.caption.64}
